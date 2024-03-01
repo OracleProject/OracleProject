@@ -1408,7 +1408,7 @@ values(
 
 insert into tblAttendancePapers
 values(
-2,2,'지각','2023-09-21','사망신고서','출석 인정');
+2,2,'결석','2023-09-21','사망신고서','출석 인정');
 
 insert into tblAttendancePapers
 values(
@@ -1460,7 +1460,7 @@ values(
 
 insert into tblAttendancePapers
 values(
-15,1,'결석','2023-12-01','모친 사망 신고서','출석 미인정');
+15,1,'결석','2023-12-01','모친 사망 신고서','출석 인정');
 
 insert into tblAttendancePapers
 values(
@@ -1601,5 +1601,64 @@ values(
 insert into tblAttendancePapers
 values(
 50,84,'지각','2024-02-22','교통사고 경찰 확인서','출석 미인정');
+
+
+select * from nls_session_parameters;
+
+
+insert into tbltest
+values(
+to_date('2024-01-01','YYYY-MM-DD') );
+
+insert into tbltest
+values(
+to_date('15:00:00','HH24:MI:SS') );
+select * from tbltest;
+
+-- 출결
+
+insert into tblAttendance
+values(
+1,1,1,to_date('2023-09-04','YYYY-MM-DD'),to_date('2023-09-04 08:30:00','YYYY-MM-DD HH24:MI:SS'),to_date('2023-09-04 17:54:32','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+2,1,5,to_date('2023-09-13','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+3,1,1,to_date('2023-10-11','YYYY-MM-DD'),to_date('2023-10-11 08:03;11','YYYY-MM-DD HH24:MI:SS'),to_date('2023-10-11 18:01:11','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+4,1,1,to_date('2023-10-20','YYYY-MM-DD'),to_date('2023-10-20 08:49:13','YYYY-MM-DD HH24:MI:SS'),to_date('2023-10-20 17:57:53','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+5,1,3,to_date('2023-11-09','YYYY-MM-DD'),to_date('2023-11-09 08:58:58','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-09 14:38:09','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+6,1,4,to_date('2023-11-23','YYYY-MM-DD'),to_date('2023-11-23 08:27:41','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-23 17:54:43','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+7,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+8,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+9,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+10,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+
+insert into tblAttendance
+values(
+11,2,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
 
 commit;
