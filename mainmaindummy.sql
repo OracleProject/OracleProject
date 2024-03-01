@@ -1643,19 +1643,19 @@ values(
 
 insert into tblAttendance
 values(
-7,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+7,1,1,to_date('2023-12-01','YYYY-MM-DD'),to_date('2023-12-01 08:49:31','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-01 17:59:12','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-8,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+8,1,2,to_date('2023-12-27','YYYY-MM-DD'),to_date('2023-12-27 08:22:29','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-27 18:02:08','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-9,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+9,1,1,to_date('2024-01-03','YYYY-MM-DD'),to_date('2024-01-03 08:39:40','YYYY-MM-DD HH24:MI:SS'),to_date('2024-01-03 18:01:23','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-10,1,?,to_date('','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
+10,1,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
