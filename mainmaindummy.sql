@@ -2245,7 +2245,7 @@ values(
 160,15,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:50:11','YYYY-MM-DD HH24:MI:SS'));
 
 
--- 16번 여기부터 하면 됨
+-- 16번 
 
 insert into tblAttendance
 values(
@@ -2376,73 +2376,73 @@ values(
 
 insert into tblAttendance
 values(
-191,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+191,19,3,to_date('2023-11-01','YYYY-MM-DD'),to_date('2023-11-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-01 11:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-192,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+192,19,1,to_date('2023-11-06','YYYY-MM-DD'),to_date('2023-11-06 08:46:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-06 17:56:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-193,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+193,19,1,to_date('2023-11-09','YYYY-MM-DD'),to_date('2023-11-09 08:17:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-09 17:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-194,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+194,19,1,to_date('2023-11-24','YYYY-MM-DD'),to_date('2023-11-24 08:33:41','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-24 17:58:51','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-195,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+195,19,1,to_date('2023-12-01','YYYY-MM-DD'),to_date('2023-12-01 08:40:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-01 17:50:21','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-196,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+196,19,1,to_date('2023-12-11','YYYY-MM-DD'),to_date('2023-12-11 08:47:49','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-11 17:51:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-197,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+197,19,1,to_date('2023-12-22','YYYY-MM-DD'),to_date('2023-12-22 08:50:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-22 17:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-198,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+198,19,1,to_date('2024-01-15','YYYY-MM-DD'),to_date('2024-01-15 08:42:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-01-15 17:59:51','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-199,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+199,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:41:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-200,19,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+200,19,1,to_date('2024-02-06','YYYY-MM-DD'),to_date('2024-02-06 08:46:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-06 17:59:16','YYYY-MM-DD HH24:MI:SS'));
 
 -- 20번
 
 insert into tblAttendance
 values(
-201,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+201,20,1,to_date('2023-12-14','YYYY-MM-DD'),to_date('','YYYY-MM-DD HH24:MI:SS'),to_date('','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-202,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+202,20,1,to_date('2023-11-01','YYYY-MM-DD'),to_date('2023-11-01 08:17:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-203,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+203,20,1,to_date('2023-11-09','YYYY-MM-DD'),to_date('2023-11-09 08:11:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-09 17:52:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-204,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+204,20,1,to_date('2023-11-30','YYYY-MM-DD'),to_date('2023-11-30 08:43:42','YYYY-MM-DD HH24:MI:SS'),to_date('2023-11-30 17:59:32','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-205,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+205,20,1,to_date('2023-12-14','YYYY-MM-DD'),to_date('2023-12-14 08:47:14','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-14 17:50:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-206,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+206,20,1,to_date('2023-12-28','YYYY-MM-DD'),to_date('2023-12-28 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-28 17:53:19','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-207,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+207,20,1,to_date('2023-12-29','YYYY-MM-DD'),to_date('2023-12-29 08:47:41','YYYY-MM-DD HH24:MI:SS'),to_date('2023-12-29 17:59:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
@@ -2450,13 +2450,13 @@ values(
 
 insert into tblAttendance
 values(
-209,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+209,20,1,to_date('2024-01-09','YYYY-MM-DD'),to_date('2024-01-09 08:47:49','YYYY-MM-DD HH24:MI:SS'),to_date('2024-01-09 17:52:11','YYYY-MM-DD HH24:MI:SS'));
 
 insert into tblAttendance
 values(
-210,20,1,to_date('2024-02-01','YYYY-MM-DD'),to_date('2024-02-01 08:47:44','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-01 17:59:11','YYYY-MM-DD HH24:MI:SS'));
+210,20,1,to_date('2024-02-05','YYYY-MM-DD'),to_date('2024-02-05 08:47:54','YYYY-MM-DD HH24:MI:SS'),to_date('2024-02-05 17:55:11','YYYY-MM-DD HH24:MI:SS'));
 
---21번
+--21번 여기서부터 하면 됨 
 
 insert into tblAttendance
 values(
