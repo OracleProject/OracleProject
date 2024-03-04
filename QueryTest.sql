@@ -159,3 +159,27 @@ update tblTextbook set publisher  = '에이콘' where name = 'OpenCV-Python으�
 
 delete from tblTextbook where name ='OpenCV-Python으로 배우는 영상처리 및 응용';
 
+-- D-1
+
+-- 성적조회
+select * from tbltrainees;
+select * from tblTraineelist;
+select * from tblopencurriculum;
+select * from tblcurriculum;
+select * from tblsubjectlist;
+
+select s.name,t.name,t.id,t.ssn,t.tel,c.name,r.name from tbltrainees t
+inner join tbltraineeList tl
+on t.seq_trainee = tl.seq_trainee
+inner join tblopencurriculum oc
+on oc.seq_opencurriculum = tl.seq_opencurriculum
+inner join tblroom r
+on r.seq_room = oc.seq_room
+inner join tblcurriculum c
+on c.seq_curriculum = oc.seq_curriculum
+inner join tblsubjectlist sl
+on sl.seq_curriculum = c.seq_curriculum
+inner join tblsubject s
+on s.seq_subject = sl.seq_subject
+group by s.name,t.name,t.id,t.ssn,t.tel,c.name,oc.startdate,oc.enddate,r.name
+order by s.name;
