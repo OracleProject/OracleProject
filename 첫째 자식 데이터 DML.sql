@@ -663,6 +663,4 @@ insert into tblRecommendTextbook (seq_recommendTextbook, seq_teacher, seq_textbo
 insert into tblRecommendTextbook (seq_recommendTextbook, seq_teacher, seq_textbook, grade) values (11, 8, 11, 2);
 insert into tblRecommendTextbook (seq_recommendTextbook, seq_teacher, seq_textbook, grade) values (12, 9, 12, 2);
 
-
-select * from tblattendancestatus;
 commit;
