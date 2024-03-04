@@ -33,33 +33,57 @@ on oc.seq_room = r.seq_room;
 -- B-7
 
 select * from tblgrades;
-
+select * from tbltestschedule;
 select * from tblsubject;
+select * from tbltraineelist;
+select * from tblopencurriculum;
+select * from tblcurriculum;
+select * from tblcoursePeriod;
 -- 과목별
-select j.name,g.writtengrade,g.practicalgrade 
-from tblGrades g
-inner join tbltestschedule ts
-    on g.seq_testschedule = ts.seq_testschedule
-    inner join tblsubjectlist sl
-    on sl.seq_subjectlist = ts.seq_subjectlist
-    inner join tblsubject j
-    on s.seq_subject = ts.
-    group by j.name;
-    /
+select c.name,t.name,cp.period,r.name,t.ssn,g.writtengrade,g.practicalgrade from tblgrades g
+inner join tbltraineelist tl
+on tl.seq_traineelist = g.seq_traineelist
+inner join tbltrainees t
+on t.seq_trainee = tl.seq_trainee
+inner join tblopencurriculum oc
+on oc.seq_opencurriculum = tl.seq_opencurriculum
+inner join tblcurriculum c
+on c.seq_curriculum = oc.seq_curriculum
+inner join tblcoursePeriod cp
+on cp.seq_coursePeriod = c.seq_courseperiod
+inner join tblroom r
+on r.seq_room = oc.seq_room;
     select * from tblsubject;
-    --교육생 개인 별
-    select r.name,j.name,writtengrade,practicalgrade 
-from tblGrades g
-inner join tblsubjectlist s
-    on g.seq_subjectList = s.seq_subjectList
-    inner join tblsubject j
-    on j.seq_subject = s.seq_subject
-    inner join tbltraineelist t
-    on t.seq_traineeList = g.seq_traineelist
-    inner join tbltrainees r
-    on r.seq_trainee = t.seq_trainee
-    where r.name = '변소류';
     
+    
+    --특정 개설 과정 
+select s.name,count(case when g.writtengrade is not null then '있음' end),count(case when g.practicalgrade is not null then '있음' end),count(case when q.seq_question is not null then '있음' end)
+from tblGrades g
+inner join tbltraineelist tl
+on g.seq_traineelist = tl.seq_traineelist
+inner join tblopencurriculum oc
+on oc.seq_opencurriculum = tl.seq_opencurriculum
+inner join tblcurriculum c
+on c.seq_curriculum = oc.seq_curriculum
+inner join tblsubjectlist sl
+on sl.seq_curriculum = c.seq_curriculum
+inner join tblcourseperiod cp
+on cp.seq_coursePeriod = c.seq_courseperiod
+inner join tblsubject s 
+on s.seq_subject = sl.seq_subject
+inner join tblexampaper ep
+on ep.seq_subject = s.seq_subject
+inner join tblquestion q
+on q.seq_question = ep.seq_question
+group by s.name;
+/
+
+select * from tblcourseperiod;
+select * from tblcurriculum;
+commit;
+
+
+
     select * from tbltrainees;
     select * from tbl
     -- B-8
