@@ -31,14 +31,7 @@ on oc.seq_room = r.seq_room;
 
 /
 -- B-7
-
-select * from tblgrades;
-select * from tbltestschedule;
-select * from tblsubject;
-select * from tbltraineelist;
-select * from tblopencurriculum;
-select * from tblcurriculum;
-select * from tblcoursePeriod;
+--b-7  ( 테이블 수정 중이라 못 넣음)
 -- 과목별
 select c.name,t.name,cp.period,r.name,t.ssn,g.writtengrade,g.practicalgrade from tblgrades g
 inner join tbltraineelist tl
@@ -76,6 +69,19 @@ on ep.seq_subject = s.seq_subject
 inner join tblquestion q
 on q.seq_question = ep.seq_question
 group by s.name;
+  --교육생 개인 별
+    select r.name,j.name,writtengrade,practicalgrade 
+from tblGrades g
+inner join tblsubjectlist s
+    on g.seq_subjectList = s.seq_subjectList
+    inner join tblsubject j
+    on j.seq_subject = s.seq_subject
+    inner join tbltraineelist t
+    on t.seq_traineeList = g.seq_traineelist
+    inner join tbltrainees r
+    on r.seq_trainee = t.seq_trainee
+    where r.name = '변소류';
+
 /
 
 select * from tblcourseperiod;
