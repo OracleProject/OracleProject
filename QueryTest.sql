@@ -102,19 +102,20 @@ group by vt.t_name, vt.a_day, vc.c_name, vt.situation;
 
 -- B-9 
 --교사 평가 조회 
+select * from tblopencurriculum;
+select * from tblopensubjectlist;
+select * from tblteacher;
+select * from tblsubjectlist;
+select * from tblsubject;
 
-select t.name,ce.grade,s.name,ce.content from tblcurriculumevaluation ce
+select t.name,ce.grade,ce.content from tblcurriculumevaluation ce
 inner join tblopencurriculum oc
 on ce.seq_opencurriculum = oc.seq_opencurriculum
-inner join tblOpensubjectList osl
-on osl.seq_opencurriculum = oc.seq_curriculum
+inner join tblopensubjectlist osl
+on osl.seq_opencurriculum = oc.seq_opencurriculum
 inner join tblteacher t
-on osl.seq_teacher = t.seq_teacher
-inner join tblsubjectlist sl
-on osl.seq_subjectlist = sl.seq_subjectlist
-inner join tblsubject s
-on s.seq_subject = sl.seq_subjectlist
-group by t.name,s.name,ce.grade,ce.content;
+on t.seq_teacher = osl.seq_teacher
+group by  t.name,ce.grade,ce.content;
 
 select * from tblsubject;
 -- B-10 
