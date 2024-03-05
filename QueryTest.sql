@@ -160,12 +160,6 @@ select * from tblgrades;
 -- D-1 (테이블 수정 중...)
 
 -- 성적조회
-select * from tbltrainees;
-select * from tblTraineelist;
-select * from tblopencurriculum;
-select * from tblcurriculum;
-select * from tblsubjectlist;
-select * from tblopensubjectlist;
 
 select distinct vt.t_name,vt.t_id,vt.t_ssn,vt.t_tel,vc.s_name,vc.osl_startdate,vc.osl_enddate from vwtrainees vt
 inner join vwgrades vg
