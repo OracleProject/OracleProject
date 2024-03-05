@@ -18,13 +18,7 @@ on tl.seq_trainee = t.seq_trainee
 group by t.name,t.ssn,t.tel,t.registrationdate;
 
 
-/
-select t_name,t_ssn,t_tel,registrationdate,count(case
-       when tl_status = '수료' then 1 
-        end )as "수강횟수"
-        from vwtrainees 
-        group by t_name,t_ssn,t_tel,registrationdate;
-/
+
 -- 교육생 검색
 
 select c.name,oc.startdate,oc.enddate,r.name,tl.status,tl.day from tbltrainees t
@@ -35,10 +29,9 @@ on tl.seq_opencurriculum = oc.seq_curriculum
 inner join tblcurriculum c
 on oc.seq_curriculum = c.seq_curriculum
 inner join tblRoom r
-on oc.seq_room = r.seq_room; 
+on oc.seq_room = r.seq_room
+where t.name = '전염유';
 
-/
--- B-7
 --b-7  ( 테이블 수정 중이라 못 넣음)
 -- 과목별
 select vc.c_name,vt.t_name,vc.s_name,vc.period,vc.r_name,vt.t_ssn,vg.writtengrade,vg.practicalgrade from vwcurriculum vc
@@ -51,7 +44,7 @@ inner join vwtrainees vt
     select * from tblsubject;
     
     select * from tblsubject;
-    --특정 개설 과정 
+    --특정 개설 과정 (티처 있음;;)
     select vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade 
 from vwgrades vg
 inner join vwtrainees vt
@@ -63,8 +56,8 @@ on t.seq_teacher = vc.seq_teacher
     where vc.c_name = 'AWS와 Docker를 활용한 Java Full-Stack 과정(B)'
     group by vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade;
 
-select * from tblcurriculum;
-
+select * from vwcurriculum;
+commit;
 select * from tblgrades;
 
   --교육생 개인 별
@@ -79,33 +72,9 @@ on vc.seq_subject = vg.seq_subject
 select * from tbltrainees;
 /
 
-select * from tblcourseperiod;
-select * from tblcurriculum;
-commit;
 
-
-
-    select * from tbltrainees;
-    select * from tbl
     -- B-8
-/
-select * from tblattendance;
-/
 
-select * from tblTraineelist;
-select * from tblopencurriculum;
-select * from tblcurriculum;
-select * from tblattendanceStatus;
-
-select * from tblAttendance a
-inner join tbltraineelist tl
-on a.seq_traineelist = tl.seq_traineelist
-inner join tblopencurriculum oc
-on oc.seq_opencurriculum = tl.seq_opencurriculum
-inner join tblcurriculum c
-on c.seq_curriculum = oc.seq_curriculum
-inner join tblattendancestatus ad
-on ad.seq_attendancestatus = a.seq_attendancestatus;
 
 --출결 관리
 --1. 개설 과정 별 
@@ -120,13 +89,8 @@ inner join tblattendancestatus ad
 on ad.seq_attendancestatus = a.seq_attendancestatus
 inner join tblTrainees t
 on t.seq_trainee = tl.seq_trainee
-where 
+where c.name = 'AWS 클라우드와 Elasticsearch를 활용한 Java Full-Stack 과정(B)'
 group by t.name,a.day,c.name,ad.situation;
-
--- 1. 개설 과정 별 
-select * from vwtrainees vt
-inner join vwcurriculum vc
-on vt.seq_opencurriculum = vc.seq_opencurriculum
 
 
 -- 2. 특정 인원 (where 문 ) 
@@ -139,13 +103,20 @@ group by vt.t_name, vt.a_day, vc.c_name, vt.situation;
 -- B-9 
 --교사 평가 조회 
 
-select t.name,e.grade,e.content from tblteacherevaluation e
-inner join tblopencurriculum o
-on e.seq_opencurriculum = o.seq_opencurriculum
+select t.name,ce.grade,s.name,ce.content from tblcurriculumevaluation ce
+inner join tblopencurriculum oc
+on ce.seq_opencurriculum = oc.seq_opencurriculum
+inner join tblOpensubjectList osl
+on osl.seq_opencurriculum = oc.seq_curriculum
 inner join tblteacher t
-on t.seq_teacher = o.seq_teacher;
+on osl.seq_teacher = t.seq_teacher
+inner join tblsubjectlist sl
+on osl.seq_subjectlist = sl.seq_subjectlist
+inner join tblsubject s
+on s.seq_subject = sl.seq_subjectlist
+group by t.name,s.name,ce.grade,ce.content;
 
-
+select * from tblsubject;
 -- B-10 
 
 --교육 희망자 면접 기록 
@@ -208,12 +179,6 @@ order by vt.t_name,vt.t_id,vt.t_ssn,vt.t_tel,vc.s_name,vc.osl_startdate,vc.osl_e
 -- 출결 관리 및 조회 
 
 --출석 기록 
-
-select * from tblTraineelist;
-select * from tbltrainees;
-select * from tblattendancestatus;
-select * from tblattendance;
-
 -- (출근 퇴근이 하루에 있으면 카운트) 매일 근태 관리
 
 select t.name,ad.situation,a.day,count(case when to_date(substr(a.intime,1,8),'yyyy-mm-dd') = to_date(substr(a.outtime,1,8),'yyyy-mm-dd') then 1
