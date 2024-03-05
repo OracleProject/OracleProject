@@ -3,9 +3,49 @@
 -- B-6
 
 -- 교육생 등록
-insert into tbltrainees
-values(
-1,'이채린','linear99','2049178','01012345678',sysdate,'우리은행','012-592-384171');
+select * from 
+
+CREATE OR REPLACE PROCEDURE insert_trainees(
+    p_id IN tbltrainees.id%TYPE,
+    p_name IN tbltrainees.name%TYPE,
+    p_id IN tbltrainees.id%TYPE,
+    p_ssn IN tbltrainees.ssn%TYPE,
+    p_phone_number IN tbltrainees.phone_number%TYPE,
+    p_registration_date IN tbltrainees.registration_date%TYPE DEFAULT SYSDATE,
+    p_bank_name IN tbltrainees.bank_name%TYPE,
+    p_account_number IN tbltrainees.account_number%TYPE
+) AS
+BEGIN
+    INSERT INTO tbltrainees VALUES (
+        p_id,
+        p_name,
+        p_id,
+        p_ssn,
+        p_phone_number,
+        p_registration_date,
+        p_bank_name,
+        p_account_number
+    );
+ 
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+      ROLLBACK;
+      RAISE;
+END insert_trainees;
+/
+BEGIN
+    insert_trainees(
+        1,
+        '이채린',
+        'linear99',
+        '2049178',
+        '01012345678',
+        SYSDATE,
+        '우리은행',
+        '012-592-384171'
+    );
+END;
 
 --교육생 출력
 
@@ -31,8 +71,8 @@ on oc.seq_curriculum = c.seq_curriculum
 inner join tblRoom r
 on oc.seq_room = r.seq_room
 where t.name = '전염유';
-
---b-7  ( 테이블 수정 중이라 못 넣음)
+/
+--b-7 
 -- 과목별
 select vc.c_name,vt.t_name,vc.s_name,vc.period,vc.r_name,vt.t_ssn,vg.writtengrade,vg.practicalgrade from vwcurriculum vc
 inner join vwtrainees vt
@@ -44,7 +84,7 @@ inner join vwtrainees vt
     select * from tblsubject;
     
     select * from tblsubject;
-    --특정 개설 과정 (티처 있음;;)
+    --특정 개설 과정 
     select vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade 
 from vwgrades vg
 inner join vwtrainees vt
