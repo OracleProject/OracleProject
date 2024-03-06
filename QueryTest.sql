@@ -3,49 +3,9 @@
 -- B-6
 
 -- 교육생 등록
-select * from 
-
-CREATE OR REPLACE PROCEDURE insert_trainees(
-    p_id IN tbltrainees.id%TYPE,
-    p_name IN tbltrainees.name%TYPE,
-    p_id IN tbltrainees.id%TYPE,
-    p_ssn IN tbltrainees.ssn%TYPE,
-    p_phone_number IN tbltrainees.phone_number%TYPE,
-    p_registration_date IN tbltrainees.registration_date%TYPE DEFAULT SYSDATE,
-    p_bank_name IN tbltrainees.bank_name%TYPE,
-    p_account_number IN tbltrainees.account_number%TYPE
-) AS
-BEGIN
-    INSERT INTO tbltrainees VALUES (
-        p_id,
-        p_name,
-        p_id,
-        p_ssn,
-        p_phone_number,
-        p_registration_date,
-        p_bank_name,
-        p_account_number
-    );
- 
-    COMMIT;
-EXCEPTION
-    WHEN OTHERS THEN
-      ROLLBACK;
-      RAISE;
-END insert_trainees;
-/
-BEGIN
-    insert_trainees(
-        1,
-        '이채린',
-        'linear99',
-        '2049178',
-        '01012345678',
-        SYSDATE,
-        '우리은행',
-        '012-592-384171'
-    );
-END;
+insert into tbltrainees
+values(
+1,'이채린','linear99','2049178','01012345678',sysdate,'우리은행','012-592-384171');
 
 --교육생 출력
 
@@ -58,6 +18,12 @@ on tl.seq_trainee = t.seq_trainee
 group by t.name,t.ssn,t.tel,t.registrationdate;
 
 
+
+-- 수정
+update tblTrainees set ssn  = '2050692' where name = '이채린';
+
+-- 삭제
+delete from tblTrainees where name = '이채린';
 
 -- 교육생 검색
 
@@ -79,26 +45,13 @@ inner join vwtrainees vt
     on vt.seq_opencurriculum = vc.seq_opencurriculum
         inner join vwgrades vg
             on vg.seq_traineelist = vt.seq_traineelist
+             where vc.s_name = 'AWS'
     group by vc.c_name,vt.t_name,vc.s_name,vc.period,vc.r_name,vt.t_ssn,vg.writtengrade,vg.practicalgrade;
     /
     select * from tblsubject;
     
     select * from tblsubject;
-    --특정 개설 과정 
-    select vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade 
-from vwgrades vg
-inner join vwtrainees vt
-on vt.seq_traineelist = vg.seq_traineelist
-inner join vwcurriculum vc
-on vc.seq_subject = vg.seq_subject
-inner join tblteacher t
-on t.seq_teacher = vc.seq_teacher
-    where vc.c_name = 'AWS와 Docker를 활용한 Java Full-Stack 과정(B)'
-    group by vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade;
-
-select * from vwcurriculum;
-commit;
-select * from tblgrades;
+    
 
   --교육생 개인 별
     select vt.t_name,vt.t_ssn,vc.c_name,vc.oc_startdate,vc.oc_enddate,vc.r_name,vc.s_name,vc.period,vg.writtengrade,vg.practicalgrade 
@@ -197,7 +150,7 @@ delete from tblTextbook where name ='OpenCV-Python으로 배우는 영상처리 
 
 
 select * from tblgrades;
--- D-1 (테이블 수정 중...)
+-- D-1 
 
 -- 성적조회
 
@@ -240,7 +193,7 @@ where a.day like '23%' and t.name = '천유서';
 --D-3
 
 --교사 평가 (수료 학생만 가능) 
-insert into tblTeacherEvaluation
+insert into tblCurriculumEvaluation
 values(
 1,1,1,5,'설명을 자세하게 해주신다.');
 
@@ -249,12 +202,27 @@ values(
 --교사 추천 도서 조회 
 
 -- 조회
-select * from tblRecommendTextbook;
+select ta.name,rt.grade,tb.name from tblRecommendTextbook rt
+inner join tbltextbook tb
+on rt.seq_textbook = tb.seq_textbook
+inner join tblteacher ta
+on ta.seq_teacher = rt.seq_teacher
+where ta.name = '김민곤';
 
 --D-6 
 --서류 제출(제출만 가능)
 
 -- 서류 제출
+
+select * from tblattendancepapers;
+
+select t.name, from tbltrainees t
+inner join tbltraineelist tl
+on tl.seq_trainee = t.seq_trainee
+inner join tblattendancepapers ap
+on ap.seq_traineelist = tl.seq_traineelist;
+
+
 insert into tblAttendancePapers
 values(
 1,1,'조퇴','2023-09-13','코로나 진단 서류','');
