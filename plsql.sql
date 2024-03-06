@@ -123,7 +123,7 @@ END;
 
 
 /
--- B-7
+-- b-7
 -- 과목별
 CREATE OR REPLACE PROCEDURE select_curriculum_by_subject(
     p_subject IN vwcurriculum.s_name%TYPE
@@ -199,11 +199,6 @@ END;
 
 /
 
-select * from tblgrades;
-select * from tblsubjectlist;
-select * from tbltraineelist;
-select * from tblsubject;
-select * from tbltrainees;
 -- b-7
   --교육생 개인 별
 CREATE OR REPLACE PROCEDURE select_trainee_info(
