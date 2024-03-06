@@ -1,8 +1,4 @@
-
-SET SERVEROUTPUT ON;
-/
-select * from tbltrainees;
--- B-6 
+-- b-6 
 --입력 
 CREATE OR REPLACE PROCEDURE insert_trainees(
     p_seq_trainee IN tbltrainees.seq_trainee%TYPE,
@@ -85,7 +81,6 @@ BEGIN
     delete_trainees('이채린');
 END;
 
-
 /
 
 
@@ -158,7 +153,6 @@ END;
 /
 
 
---b-7 
 -- 특정 개설 과정
 /
 CREATE OR REPLACE PROCEDURE select_grades_course(
@@ -199,7 +193,6 @@ END;
 
 /
 
--- b-7
   --교육생 개인 별
 CREATE OR REPLACE PROCEDURE select_trainee_info(
     p_name IN vwtrainees.t_name%TYPE
@@ -558,11 +551,6 @@ BEGIN
     select_attendance_info;
 END;
 /
-
-
--- 년 월 일로 보는 방법 (ANSI , %가 안됨 ; )
-
-
 
 --D-3
 --교사 평가 (수료 학생만 가능) 

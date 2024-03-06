@@ -1,40 +1,141 @@
 --Trigger
--- aws , docker , kubernetes
 
-select * from tblquestion;
+--3번
 
-select * from tblsubject;
+/
+CREATE OR REPLACE TRIGGER trgCheckPeriodSum
+BEFORE INSERT OR UPDATE ON tblcourseperiod
+FOR EACH ROW
+DECLARE
+    v_period_sum NUMBER;
+BEGIN
+    -- tblsubject 테이블에서 period의 합을 계산합니다.
+    SELECT SUM(period) INTO v_period_sum
+    FROM tblsubject;
+    
+    -- 새로운 코스 기간이나 업데이트된 코스 기간의 period 합이 tblsubject의 period 합과 같은지 확인합니다.
+    IF :NEW.period != v_period_sum THEN
+        RAISE_APPLICATION_ERROR(-20001, 'tblsubject 테이블의 period 값의 합과 일치해야 합니다.');
+    END IF;
+END;
+/
+
+/
 
 
-insert into tblquestion
-values(
-141,'AWS의 IAM(Identity and Access Management)에서 정책(Policy)이란 무엇이며 어떻게 작동하나요?','1');
-insert into tblquestion
-values(
-142,'AWS EC2 인스턴스와 Lambda 함수의 차이점은 무엇인가요?','2');
-insert into tblquestion
-values(
-143,'AWS S3 버킷의 버킷 정책(Bucket Policy)과 객체 ACL(Object ACL)의 차이점은 무엇인가요?','2');
-insert into tblquestion
-values(
-144,'AWS의 Auto Scaling이란 무엇이며 어떻게 사용되나요?','3');
-insert into tblquestion
-values(
-145,'AWS RDS와 DynamoDB의 주요 차이점은 무엇인가요?','4');
-insert into tblquestion
-values(
-146,'AWS Lambda 함수의 실행 시간 제한은 어떻게 작동하며 어떤 영향을 미치나요?','3');
-insert into tblquestion
-values(
-147,'AWS VPC(Virtual Private Cloud)에서 퍼블릭 서브넷과 프라이빗 서브넷의 차이는 무엇인가요?','1');
-insert into tblquestion
-values(
-148,'AWS CloudFormation이란 무엇이며 어떻게 사용되는가요?','5');
-insert into tblquestion
-values(
-149,'AWS Elastic Beanstalk과 AWS Lambda의 주요 차이점은 무엇인가요?','1');
-insert into tblquestion
-values(
-150,'AWS CloudWatch와 AWS CloudTrail의 주요 차이점은 무엇인가요?','2');
+--6번
 
-commit;
+/
+CREATE OR REPLACE TRIGGER trgCheckPoints
+BEFORE INSERT ON tblTestInfo
+FOR EACH ROW
+BEGIN
+    IF :NEW.writtenpoints >= 30 THEN
+        RAISE_APPLICATION_ERROR(-20001, '최대 30까지 입력 가능합니다.');
+    END IF;
+    
+    IF :NEW.practicalpoints >= 40 THEN
+        RAISE_APPLICATION_ERROR(-20002, '최대 40까지 입력 가능합니다.');
+    END IF;
+    
+    IF :NEW.attendancepoints >= 30 THEN
+        RAISE_APPLICATION_ERROR(-20003, '최대 30까지 입력 가능합니다.');
+    END IF;
+END;
+/
+select * from tbltrainees;
+-- 7번 
+/
+CREATE OR REPLACE TRIGGER trgCheckStatus
+BEFORE INSERT ON tblcurriculumevaluation
+FOR EACH ROW
+DECLARE
+    v_status VARCHAR2(20);
+BEGIN
+    -- tbltraineelist에서 해당 trainee의 status를 가져옵니다.
+    SELECT status INTO v_status
+    FROM tbltraineelist
+    WHERE seq_traineelist = :NEW.seq_traineelist;
+    
+    -- status가 '수료'인 경우에만 삽입을 허용합니다.
+    IF v_status != '수료' THEN
+        RAISE_APPLICATION_ERROR(-20001, '수료 상태일 때만 평가를 삽입할 수 있습니다.');
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20002, '해당 trainee_id가 tbltraineelist에 존재하지 않습니다.');
+END;
+/
+
+select * from tblopensubjectlist;
+
+
+-- 8번
+/
+CREATE OR REPLACE TRIGGER trgCheckEnddate
+BEFORE INSERT ON tblTestInfo
+FOR EACH ROW
+DECLARE
+    v_enddate DATE;
+BEGIN
+    -- tblOpensubjectList에서 해당 과목의 종료일(enddate)을 가져옵니다.
+    SELECT enddate INTO v_enddate
+    FROM tblOpensubjectList
+    WHERE seq_opensubjectlist = :NEW.seq_opensubjectlist;
+    
+    -- 종료일(enddate) 이후에만 삽입을 허용합니다.
+    IF v_enddate IS NOT NULL AND v_enddate <= SYSDATE THEN
+        RAISE_APPLICATION_ERROR(-20001, '과목 종료일 이후에만 시험 정보를 삽입할 수 있습니다.');
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20002, '해당 과목 ID가 tblOpensubjectList에 존재하지 않습니다.');
+END;
+/
+--9번(아직 다 못 함)
+select * from tbltraineelist;
+
+
+
+
+
+/
+
+-- 10번
+/
+CREATE OR REPLACE PROCEDURE procUpdateAttendanceStatus (
+    p_seq_AttendanceStatus OUT tblAttendance.seq_AttendanceStatus%TYPE
+) AS
+    v_current_time NUMBER;
+    v_inTime tblAttendance.inTime%TYPE;
+    v_outTime tblAttendance.outTime%TYPE;
+    vcursor SYS_REFCURSOR;
+BEGIN
+    -- 현재 시간을 가져옵니다.
+    SELECT TO_NUMBER(TO_CHAR(SYSDATE, 'HH24')) INTO v_current_time FROM DUAL;
+
+    -- inTime과 outTime을 가져오는 쿼리를 실행합니다.
+    OPEN vcursor FOR
+    SELECT inTime, outTime
+    FROM tblAttendance;
+    FETCH vcursor INTO v_inTime, v_outTime;
+    CLOSE vcursor;
+
+    -- inTime이 null이고 현재 시간이 9시 이후인 경우
+    IF v_inTime IS NULL AND v_current_time >= 9 THEN
+        p_seq_AttendanceStatus := 2;
+    END IF;
+
+    -- outTime이 null이고 현재 시간이 18시 이후인 경우
+    IF v_outTime IS NULL AND v_current_time >= 18 THEN
+        p_seq_AttendanceStatus := 3;
+    END IF;
+
+    -- inTime과 outTime이 모두 null이고 현재 시간이 18시 이후인 경우
+    IF v_inTime IS NULL AND v_outTime IS NULL AND v_current_time >= 18 THEN
+        p_seq_AttendanceStatus := 6;
+    END IF;
+END;
+/
+
+
