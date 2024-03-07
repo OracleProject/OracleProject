@@ -163,43 +163,42 @@ END;
 /
 
 /
-CREATE OR REPLACE PROCEDURE procUpdateAttendanceStatus AS
+CREATE OR REPLACE PROCEDURE procUpdateAttendanceStatus (p_inTime IN tblAttendance.inTime%TYPE, 
+                                                          p_outTime IN tblAttendance.outTime%TYPE, 
+                                                          p_seq_AttendanceStatus OUT tblAttendance.seq_AttendanceStatus%TYPE) 
+IS
     v_current_time NUMBER;
-    CURSOR c_attendance IS
-        SELECT inTime, outTime, seq_AttendanceStatus
-        FROM tblAttendance
-        WHERE inTime IS NULL OR outTime IS NULL;
-
-    -- 학생이 출석 중인지 확인하는 함수
-    FUNCTION is_student_attending(p_inTime IN tblAttendance.inTime%TYPE, p_outTime IN tblAttendance.outTime%TYPE) RETURN BOOLEAN IS
-    BEGIN
-        RETURN (p_inTime IS NOT NULL AND p_outTime IS NULL);
-    END is_student_attending;
-
+    v_cursor SYS_REFCURSOR;
 BEGIN
     -- 현재 시간을 가져옵니다.
     SELECT TO_NUMBER(TO_CHAR(SYSDATE, 'HH24')) INTO v_current_time FROM DUAL;
 
-    -- 커서를 통해 루프를 실행하여 각 행을 처리합니다.
-    FOR attendance_row IN c_attendance LOOP
-        -- 현재 시간이 9시 이후이고 inTime이 null인 경우
-        IF v_current_time >= 9 AND attendance_row.inTime IS NULL THEN
-            attendance_row.seq_AttendanceStatus := 2;
-        END IF;
+    -- inTime이 null이고 현재 시간이 9시 이후인 경우
+    IF p_inTime IS NULL AND v_current_time >= 9 THEN
+        p_seq_AttendanceStatus := 2;
+    END IF;
 
-        -- 현재 시간이 18시 이후이고 outTime이 null인 경우
-        IF v_current_time >= 18 AND attendance_row.outTime IS NULL THEN
-            attendance_row.seq_AttendanceStatus := 3;
-        END IF;
+    -- outTime이 null이고 현재 시간이 18시 이후인 경우
+    IF p_outTime IS NULL AND v_current_time >= 18 THEN
+        p_seq_AttendanceStatus := 3;
+    END IF;
 
-        -- intime과 outtime이 모두 null이고 현재 시간이 18시 이후인 경우
-        IF v_current_time >= 18 AND is_student_attending(attendance_row.inTime, attendance_row.outTime) THEN
-            attendance_row.seq_AttendanceStatus := 6;
-        END IF;
-    END LOOP;
+    -- intime과 outtime이 모두 null이고 현재 시간이 18시 이후인 경우
+    IF p_inTime IS NULL AND p_outTime IS NULL AND v_current_time >= 18 THEN
+        p_seq_AttendanceStatus := 6;
+    END IF;
+
+    -- 커서를 사용하여 tblAttendance 테이블을 업데이트합니다.
+    OPEN v_cursor FOR 'UPDATE tblAttendance SET seq_AttendanceStatus = :1 WHERE inTime = :2 AND outTime = :3' USING p_seq_AttendanceStatus, p_inTime, p_outTime;
+    CLOSE v_cursor;
 END;
 /
 
+/
+
+/
+insert into tblattendance values(
+11111,1,null,to_date('2024-03-07','YYYY-MM-DD'),null,null);
 /
 
 /
