@@ -8,17 +8,7 @@
 insert into tblCurriculum(seq_curriculum, seq_coursePeriod, name, goal) values 
 ((select max(seq_curriculum) from tblCurriculum) + 1, 2,'AWS와 Docker를 활용한 Java Full-Stack 과정(A)', 
 'Java 언어를 기반으로 AWS와 Docker를 활용하여 Full-Stack 개발자를 양성하고 있습니다.');
-select * from tblquestion;
 
-select
-case
-when writtengrade is not null then '필기성적입력완료' else '미입력' 
-end as 필기
-, 
-case when practicalgrade is not null then '실기성적입력완료' else '미입력'
-end as 실기
-from tblgrades;
-/
 --2. 출력
 select distinct
 	name as 과정명
@@ -248,7 +238,7 @@ delete from tblOpenSubjectList
     
     
 -- 원준
--- B-6
+-- b-6
 -- 교육생 등록
 insert into tbltrainees
 values(
@@ -258,22 +248,22 @@ values(
 select t.name,t.ssn,t.tel,t.registrationdate,count(case
        when tl.status = '수료' then 1 
         end )as "수강횟수"
-        from tbltraineelist tl
-inner join tbltrainees t
-on tl.seq_trainee = t.seq_trainee
-group by t.name,t.ssn,t.tel,t.registrationdate;
+            from tbltraineelist tl
+                inner join tbltrainees t
+                    on tl.seq_trainee = t.seq_trainee
+                        group by t.name,t.ssn,t.tel,t.registrationdate;
 
 -- 교육생 검색
 select c.name,oc.startdate,oc.enddate,r.name,tl.status,tl.day from tbltrainees t
-inner join tbltraineelist tl
-on t.seq_trainee = tl.seq_trainee
-inner join tblopencurriculum oc
-on tl.seq_opencurriculum = oc.seq_curriculum
-inner join tblcurriculum c
-on oc.seq_curriculum = c.seq_curriculum
-inner join tblRoom r
-on oc.seq_room = r.seq_room
-where t.name = '전염유';
+    inner join tbltraineelist tl
+        on t.seq_trainee = tl.seq_trainee
+            inner join tblopencurriculum oc
+                on tl.seq_opencurriculum = oc.seq_curriculum
+                    inner join tblcurriculum c
+                        on oc.seq_curriculum = c.seq_curriculum
+                            inner join tblRoom r
+                                on oc.seq_room = r.seq_room
+                                    where t.name = '전염유';
 
 -- 교육생 수정 
 UPDATE tblTrainees 
@@ -297,17 +287,17 @@ select vc.c_name
 ,vg.writtengrade 
 ,vg.practicalgrade 
 from vwcurriculum vc
-inner join vwtrainees vt
-    on vt.seq_opencurriculum = vc.seq_opencurriculum
-        inner join vwgrades vg
-            on vg.seq_traineelist = vt.seq_traineelist
-                inner join tblteacher tea 
-                    on tea.seq_teacher =  vc.seq_teacher
-                        inner join tbltextbook tb
-                        on tb.seq_textbook = vc.seq_textbook
-                        INNER join tblcourseperiod cp
-                            on cp.seq_courseperiod = vc.seq_courseperiod
-                            group by vc.c_name,cp.period,vc.r_name,vc.s_name,tea.name,tb.name,vt.t_name,vt.t_ssn,vg.writtengrade,vg.practicalgrade;
+    inner join vwtrainees vt
+        on vt.seq_opencurriculum = vc.seq_opencurriculum
+            inner join vwgrades vg
+                on vg.seq_traineelist = vt.seq_traineelist
+                    inner join tblteacher tea 
+                        on tea.seq_teacher =  vc.seq_teacher
+                            inner join tbltextbook tb
+                                on tb.seq_textbook = vc.seq_textbook
+                                    INNER join tblcourseperiod cp
+                                        on cp.seq_courseperiod = vc.seq_courseperiod
+                                            group by vc.c_name,cp.period,vc.r_name,vc.s_name,tea.name,tb.name,vt.t_name,vt.t_ssn,vg.writtengrade,vg.practicalgrade;
     /
     select * from tblsubject;
     AWS와 Docker를 활용한 Java Full-stack 과정(B)
@@ -315,84 +305,74 @@ inner join vwtrainees vt
     --특정 개설 과정 
     select vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade 
 from vwgrades vg
-inner join vwtrainees vt
-on vt.seq_traineelist = vg.seq_traineelist
-inner join vwcurriculum vc
-on vc.seq_subject = vg.seq_subject
-inner join tblteacher t
-on t.seq_teacher = vc.seq_teacher
-    where vc.c_name = 'AWS와 Docker를 활용한 Java Full-Stack 과정(B)'
-    group by vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade;
+    inner join vwtrainees vt
+        on vt.seq_traineelist = vg.seq_traineelist
+            inner join vwcurriculum vc
+                on vc.seq_subject = vg.seq_subject
+                    inner join tblteacher t
+                        on t.seq_teacher = vc.seq_teacher
+                             where vc.c_name = 'AWS와 Docker를 활용한 Java Full-Stack 과정(B)'
+                                 group by vt.t_name,vc.c_name,vc.s_name,t.name,vg.writtengrade,vg.practicalgrade;
 
-select * from vwcurriculum;
-commit;
-select * from tblgrades;
 
-select * from tblcourseperiod;
-
-select * from tblcurriculum;
-
-select * from vwcurriculum;
-select * from tblattendance;
-select * from tblattendancestatus;
 /
 --교육생 개인 별
-    select vt.t_name,vt.t_ssn,vc.c_name,cp.period,vc.r_name,vc.s_name,vc.period,tea.name,ass.situation,vg.writtengrade,vg.practicalgrade 
-from vwgrades vg
-inner join vwtrainees vt
-on vt.seq_traineelist = vg.seq_traineelist
-inner join vwcurriculum vc
-on vc.seq_subject = vg.seq_subject
-inner join tblcourseperiod cp
-on cp.seq_courseperiod = vc.seq_courseperiod
-inner join tblattendancestatus ass
-on ass.seq_attendancestatus = vt.seq_attendancestatus
-inner join tblteacher tea
-on tea.seq_teacher = vc.seq_teacher
-    where vt.t_name = '천유서'
-    group by vt.t_name,vt.t_ssn,vc.c_name,cp.period,vc.oc_startdate,vc.oc_enddate,vc.r_name,vc.c_name,vc.period,tea.name,ass.situation,vc.s_name,vg.writtengrade,vg.practicalgrade;
+select vt.t_name,vt.t_ssn,vc.c_name,cp.period,vc.r_name,vc.s_name,vc.period,tea.name,ass.situation,vg.writtengrade,vg.practicalgrade 
+    from vwgrades vg
+        inner join vwtrainees vt
+            on vt.seq_traineelist = vg.seq_traineelist
+                inner join vwcurriculum vc
+                    on vc.seq_subject = vg.seq_subject
+                        inner join tblcourseperiod cp
+                            on cp.seq_courseperiod = vc.seq_courseperiod
+                                inner join tblattendancestatus ass
+                                    on ass.seq_attendancestatus = vt.seq_attendancestatus
+                                        inner join tblteacher tea
+                                            on tea.seq_teacher = vc.seq_teacher
+                                                where vt.t_name = '천유서'
+                                                    group by vt.t_name,vt.t_ssn,vc.c_name,cp.period,vc.oc_startdate,vc.oc_enddate,vc.r_name,vc.c_name,vc.period,tea.name,ass.situation,vc.s_name,vg.writtengrade,vg.practicalgrade;
 
 
 
--- B-8
+-- b-8
 --출결 관리
 --1. 개설 과정 별
 select t.name,a.day,c.name,ad.situation from tblAttendance a
-inner join tblTraineeList tl
-on a.seq_traineeList = tl.seq_traineelist
-inner join tblopencurriculum oc
-on oc.seq_opencurriculum = tl.seq_opencurriculum
-inner join tblCurriculum c
-on c.seq_curriculum = oc.seq_opencurriculum
-inner join tblattendancestatus ad
-on ad.seq_attendancestatus = a.seq_attendancestatus
-inner join tblTrainees t
-on t.seq_trainee = tl.seq_trainee
-where c.name = 'AWS 클라우드와 Elasticsearch를 활용한 Java Full-Stack 과정(B)' and a.day between to_date('2023-09-04', 'YYYY-MM-DD') and to_date('2024-02-04', 'YYYY-MM-DD')
-group by t.name,a.day,c.name,ad.situation;
+    inner join tblTraineeList tl
+        on a.seq_traineeList = tl.seq_traineelist
+            inner join tblopencurriculum oc
+                on oc.seq_opencurriculum = tl.seq_opencurriculum
+                    inner join tblCurriculum c
+                        on c.seq_curriculum = oc.seq_opencurriculum
+                            inner join tblattendancestatus ad
+                                on ad.seq_attendancestatus = a.seq_attendancestatus
+                                    inner join tblTrainees t
+                                        on t.seq_trainee = tl.seq_trainee
+                                            where c.name = 'AWS 클라우드와 Elasticsearch를 활용한 Java Full-Stack 과정(B)' and a.day between to_date('2023-09-04', 'YYYY-MM-DD') and to_date('2024-02-04', 'YYYY-MM-DD')
+                                                group by t.name,a.day,c.name,ad.situation;
 
 
 -- 2. 특정 인원 (where 문 ) 
 select vt.t_name, vt.a_day, vc.c_name, vt.situation from vwtrainees vt
-inner join vwcurriculum vc 
-on vt.seq_opencurriculum = vc.seq_opencurriculum 
-where vt.t_name = '제류혁'
-group by vt.t_name, vt.a_day, vc.c_name, vt.situation;
+    inner join vwcurriculum vc 
+        on vt.seq_opencurriculum = vc.seq_opencurriculum 
+            where vt.t_name = '제류혁'
+                group by vt.t_name, vt.a_day, vc.c_name, vt.situation;
 
 
--- B-9 
+-- b-9 
 --교육 과정 평가 기능 관리
 select t.name,ce.grade,ce.content from tblcurriculumevaluation ce
-inner join tblopencurriculum oc
-on ce.seq_opencurriculum = oc.seq_opencurriculum
-inner join tblopensubjectlist osl
-on osl.seq_opencurriculum = oc.seq_opencurriculum
-inner join tblteacher t
-on t.seq_teacher = osl.seq_teacher
-group by  t.name,ce.grade,ce.content;
+    inner join tblopencurriculum oc
+        on ce.seq_opencurriculum = oc.seq_opencurriculum
+            inner join tblopensubjectlist osl
+                on osl.seq_opencurriculum = oc.seq_opencurriculum
+                    inner join tblteacher t
+                        on t.seq_teacher = osl.seq_teacher
+                            group by  t.name,ce.grade,ce.content;
 
 
--- B-10 
+-- b-10 
 --교육 희망자 면접 기록 
 insert into tblinterviewresults
 values(
@@ -402,19 +382,20 @@ values(
 --교육 희망자 정보 조회 
 
 select t.name,t.id,t.ssn,t.tel from tbltrainees t
-inner join tblinterviewschedule s
-on s.seq_trainee = t.seq_trainee;
+    inner join tblinterviewschedule s
+        on s.seq_trainee = t.seq_trainee;
 
 -- 합격자 불합격자 구분
 select t.name,r.status from tbltrainees t
-inner join tblinterviewschedule s
-on s.seq_trainee = t.seq_trainee
-inner join tblinterviewresults r
-on r.seq_schedule = s.seq_schedule
-order by r.status;
+    inner join tblinterviewschedule s
+        on s.seq_trainee = t.seq_trainee
+            inner join tblinterviewresults r
+                on r.seq_schedule = s.seq_schedule
+                    order by r.status;
 
 
--- B.11 
+
+-- b.11 
 --교재 추가 
 insert into tblTextbook
 values(
@@ -604,6 +585,7 @@ from vwtrainees
 
 -- 민곤
 --c-1 
+select * from tblTraineeList;
 --교사는 강의 스케줄,과목 정보를 조회한다
 select distinct
 s.seq_subject as 과목번호,
@@ -612,7 +594,7 @@ cp.status as 과정상태,
 oc.startDate as "과정 시작일",
 oc.endDate as "과정 종료일",
 r.name as 강의실명,
-r.capacity as 강의실인원, --(수정필요!)
+count(tl.seq_opencurriculum) as "교육생 등록 인원",
 s.name as 과목명,
 os.startdate as 과목시작일,
 os.enddate as 과목종료일,
@@ -641,6 +623,8 @@ from tblTeacher t
                                                                             inner join tblTextBook tb 
                                                                                 on tb.seq_textbook = os.seq_textbook
                                                                                 where t.name = '김민곤'
+                                                                                  group by s.seq_subject,c.name,cp.status,oc.startDate,oc.endDate,r.name
+                                                                                  ,tl.seq_opencurriculum,s.name,os.startdate,os.enddate,tb.name
                                                                                 order by s.seq_subject asc;
                                                                                 
  --교사는 교육생 정보를 조회 한다.                                                          
@@ -1020,7 +1004,7 @@ from vwcurriculum c
                                 on tl.seq_trainee = t.seq_trainee
                                     order by 학생명;
                                     
-                                        
+                        
 -- D-2
 -- 출결 관리 및 조회 
 
@@ -1067,10 +1051,26 @@ values(
 1,1,1,5,'설명을 자세하게 해주신다.');
 
 
---D-4 교사별로 출력되야 한다. 자기가 수강 중인 교사님의 추천 교재만 볼 수 있어야 한다.
---교사 추천 도서 조회 
+-- D-4 교사별로 출력되야 한다. 자기가 수강 중인 교사님의 추천 교재만 볼 수 있어야 한다.
+-- 교사 추천 도서 조회 
 -- 조회
-select * from tblRecommendTextbook;
+select 
+distinct osl.seq_openCurriculum 교육과정명,
+tea.name 교사명,
+rb.grade 별점,
+b.name "책 제목",
+b.publisher "출판사명"
+from tblRecommendTextbook rb
+    inner join tblOpenSubjectList osl
+        on rb.seq_teacher = osl.seq_teacher
+            inner join tblTraineeList tl
+                on tl.seq_openCurriculum = osl.seq_openCurriculum
+                    inner join tblTeacher tea
+                        on tea.seq_teacher = osl.seq_teacher
+                            inner join tblTextbook b
+                                on b.seq_textbook = rb.seq_textbook
+                                    where osl.seq_teacher = rb.seq_teacher
+                                    and tl.seq_trainee = 1;
 
 
 --D-5
@@ -1079,3 +1079,4 @@ select * from tblRecommendTextbook;
 insert into tblAttendancePapers
 values(
 1,1,'조퇴','2023-09-13','코로나 진단 서류','');
+

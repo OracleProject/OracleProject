@@ -146,7 +146,8 @@ end;
 
 
 -- b-7 
--- 과목별 
+
+--과목별
 
 CREATE OR REPLACE PROCEDURE procCurriculumBySubject (
     p_subject_name IN VARCHAR2
@@ -231,7 +232,7 @@ END;
 /
 
 
---교육생 개인 별 (수정필요!) 교사명, 출결 추가 필요
+--교육생 개인 별 
 CREATE OR REPLACE PROCEDURE procGradesInfoByTrainee(
     p_trainee_name IN VARCHAR2
 ) IS
@@ -276,37 +277,51 @@ END;
 
 /
 
--- b-8 (수정필요!) 두개 모두 기간 별로 조회할 매개 변수 추가 필요
--- 출결관리 
--- 1. 개설 과정별
-CREATE PROCEDURE GetGradesByCourse (
-    IN course_name VARCHAR(255)
-)
-BEGIN
-    SELECT vc.c_name,
-           cp.period,
-           vc.r_name,
-           vc.s_name,
-           tea.name AS teacher_name,
-           tb.name AS textbook_name,
-           vt.t_name,
-           vt.t_ssn,
-           vg.writtengrade,
-           vg.practicalgrade
-    FROM vwcurriculum vc
-    INNER JOIN vwtrainees vt ON vt.seq_opencurriculum = vc.seq_opencurriculum
-    INNER JOIN vwgrades vg ON vg.seq_traineelist = vt.seq_traineelist
-    INNER JOIN tblteacher tea ON tea.seq_teacher = vc.seq_teacher
-    INNER JOIN tbltextbook tb ON tb.seq_textbook = vc.seq_textbook
-    INNER JOIN tblcourseperiod cp ON cp.seq_courseperiod = vc.seq_courseperiod
-    WHERE vc.c_name = course_name
-    GROUP BY vc.c_name, cp.period, vc.r_name, vc.s_name, tea.name, tb.name, vt.t_name, vt.t_ssn, vg.writtengrade, vg.practicalgrade;
-END;
 
+-- b-8 
+
+CREATE OR REPLACE PROCEDURE procCourseInfo(
+    p_course IN tblCurriculum.name%TYPE,
+    p_start_date IN DATE,
+    p_end_date IN DATE
+    
+   
+) IS
+    CURSOR c_course IS
+        SELECT t.name AS trainee_name, a.day, c.name AS course_name, ad.situation 
+        FROM tblAttendance a
+        INNER JOIN tblTraineeList tl ON a.seq_traineeList = tl.seq_traineelist
+        INNER JOIN tblopencurriculum oc ON oc.seq_opencurriculum = tl.seq_opencurriculum
+        INNER JOIN tblCurriculum c ON c.seq_curriculum = oc.seq_opencurriculum
+        INNER JOIN tblattendancestatus ad ON ad.seq_attendancestatus = a.seq_attendancestatus
+        INNER JOIN tblTrainees t ON t.seq_trainee = tl.seq_trainee
+        WHERE c.name = p_course 
+        AND a.day BETWEEN p_start_date AND p_end_date
+        GROUP BY t.name, a.day, c.name, ad.situation;
+    
+    v_course c_course%ROWTYPE;
+BEGIN
+    OPEN c_course;
+    LOOP
+        FETCH c_course INTO v_course;
+        EXIT WHEN c_course%NOTFOUND;
+        
+        DBMS_OUTPUT.PUT_LINE('교육생 이름: ' || v_course.trainee_name || ', 날짜: ' || v_course.day || ', 과정 이름: ' || v_course.course_name || ', 출석 상황: ' || v_course.situation);
+        dbms_output.put_line('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
+
+    END LOOP;
+    CLOSE c_course;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('해당 과정의 정보를 찾을 수 없습니다.');
+    WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE;
+END procCourseInfo;
 /
 
 BEGIN
-    procCourseInfo('AWS 클라우드와 Elasticsearch를 활용한 Java Full-Stack 과정(B)');
+    procCourseInfo('AWS 클라우드와 Elasticsearch를 활용한 Java Full-Stack 과정(B)', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-12-30', 'YYYY-MM-DD'));
 END;
 /
 
@@ -465,10 +480,6 @@ begin
 end;
 /
 
-
--- b-17 (수정필요!) 추가 구현 필요
-
-
 --c-1.1 강의 스케줄 
 CREATE OR REPLACE PROCEDURE proctschedule(
     ptname VARCHAR2
@@ -484,7 +495,7 @@ IS
     vos_startdate DATE;
     vos_enddate DATE;
     vtb_name VARCHAR2(200);
-    vr_capacity number;
+    vtl_seq_opencurriculum number;
     
     CURSOR vcursor IS
         select distinct 
@@ -497,7 +508,7 @@ s.name as 과목명,
 os.startdate as 과목시작일,
 os.enddate as 과목종료일,
 tb.name as 교재명,
-r.capacity as 인원수 --(수정필요!)
+count(tl.seq_opencurriculum) as "교육생 등록 인원" 
 from tblTeacher t
     inner join tblOpenSubjectList os
         on t.seq_teacher = os.seq_teacher
@@ -521,16 +532,19 @@ from tblTeacher t
                                                                         on cop.seq_coursePeriod = c.seq_coursePeriod
                                                                             inner join tblTextBook tb 
                                                                                 on tb.seq_textbook = os.seq_textbook
-                                                                                where t.name = ptname;         
+                                                                                      where t.name = ptname    
+                                                                                         group by c.name, cp.status, oc.startDate,oc.endDate,s.seq_subject,s.name,
+                                                                                           os.startdate,os.enddate,tb.name;
+                                                                                  
 
 BEGIN
     OPEN vcursor;
     LOOP
-        FETCH vcursor INTO  vc_name,vcp_status, voc_startdate,voc_enddate,vs_seq_subject, vs_name, vos_startdate, vos_enddate, vtb_name,vr_capacity;
+        FETCH vcursor INTO  vc_name,vcp_status, voc_startdate,voc_enddate,vs_seq_subject, vs_name, vos_startdate, vos_enddate, vtb_name, vtl_seq_opencurriculum;
         EXIT WHEN vcursor%NOTFOUND;
         DBMS_OUTPUT.PUT_LINE( '과정명: ' || vc_name || '| 과정상태'  || vcp_status|| '| 과정시작일: ' || voc_startdate || ' | 과정종료일: ' ||  voc_enddate ||
                                                '| 과목번호'||vs_seq_subject|| '| 과목명: ' ||vs_name ||'| 과목시작일: ' || vos_startdate || '| 과목종료일: ' ||  vos_enddate ||
-                                                '| 교재명'|| vtb_name||'| 등록인원' || vr_capacity);
+                                                '| 교재명'|| vtb_name||'| 등록인원' ||  vtl_seq_opencurriculum);
       dbms_output.put_line ('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');         
     END LOOP;
     CLOSE vcursor;
@@ -792,18 +806,17 @@ end;
 /
 
 
--- (수정필요!) 교사 번호를 입력하면 본인이 수강 중인 과목 목록 다 출력되야한다.
+-- 교사 번호를 입력하면 본인이 수강 중인 과목 목록 다 출력
 -- 4. 과목 목록 출력 시 과목번호, 과정명, 과정기간(시작 년월일, 끝 년월일), 강의실, 과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 출결, 필기, 실기 배점 등이 출력되고, 
 -- 특정 과목을 과목번호로 선택 시 출결 배점, 필기 배점, 실기 배점, 시험 날짜, 시험 문제를 입력할 수 있는 화면으로 연결되어야 한다. (자바에서 구현해야할 듯)
 -- 5. 배점 등록이 안 된 과목인 경우는 과목 정보가 출력될 때 배점 부분은 null 값으로 출력한다.
--- 4.1. 특정 교사가 개설 과목 목록 번호로 선택하면 정보 출력
 create or replace procedure procSubjectListOut (
-    pSeq_teacher in number,
-    pSeq_openSubjectList in number
+    pSeq_teacher in number
 ) 
 is
  cursor vcursor is
         select 
+        vc.seq_openSubjectList "과정 번호",
         vc.seq_subject "과목 번호",
         vc.c_name "과정명",
         vc.oc_startDate "과정 시작일",
@@ -822,7 +835,6 @@ is
                     inner join tblTestInfo ti
                         on ti.seq_openSubjectList = vc.seq_openSubjectList
                             where vc.seq_teacher = pSeq_teacher
-                            and vc.seq_openSubjectList = pSeq_openSubjectList
                             and vc.osl_enddate < sysdate;
                             
     vrecord vcursor%rowtype;
@@ -833,7 +845,7 @@ begin
     loop
         fetch vcursor into vrecord;
         exit when vcursor%notfound;
-        dbms_output.put_line('-----------------------------------------------------------------------------------');
+        dbms_output.put_line('과정 번호: ' || vrecord."과정 번호");
         dbms_output.put_line('과목 번호: ' || vrecord."과목 번호");
         dbms_output.put_line('과정명: ' || vrecord."과정명");
         dbms_output.put_line('과정 시작일: ' || vrecord."과정 시작일");
@@ -858,7 +870,7 @@ end procSubjectListOut;
 /
 
 begin
-    procSubjectListOut(1, 1);
+    procSubjectListOut(1);
 end;
 /
 
@@ -1429,38 +1441,53 @@ END;
 /
 
 
---D-4 
---교사 추천 도서 조회 
-CREATE OR REPLACE PROCEDURE procTextbookInfo(
-p_teacher_name IN VARCHAR2) 
-IS
-    CURSOR c_textbook IS
-        SELECT ta.name, rt.grade, tb.name AS textbook_name
-        FROM tblRecommendTextbook rt
-        INNER JOIN tbltextbook tb ON rt.seq_textbook = tb.seq_textbook
-        INNER JOIN tblteacher ta ON ta.seq_teacher = rt.seq_teacher
-        WHERE ta.name = p_teacher_name;
+-- D-4 
+-- 교사 추천 도서 조회 
+create or replace procedure procTextbookInfo(
+    pSeq_trainee in varchar2
+) 
+is
+    cursor vcursor is
+        select 
+        distinct osl.seq_opencurriculum 교육과정명,
+        tea.name 교사명,
+        rb.grade 별점,
+        b.name "책 제목",
+        b.publisher "출판사명"
+        from tblrecommendtextbook rb
+            inner join tblopensubjectlist osl
+                on rb.seq_teacher = osl.seq_teacher
+                    inner join tbltraineelist tl
+                        on tl.seq_opencurriculum = osl.seq_opencurriculum
+                            inner join tblteacher tea
+                                on tea.seq_teacher = osl.seq_teacher
+                                    inner join tbltextbook b
+                                        on b.seq_textbook = rb.seq_textbook
+                                            where osl.seq_teacher = rb.seq_teacher
+                                            and tl.seq_trainee = pSeq_trainee;
 
-    v_textbook c_textbook%ROWTYPE;
-BEGIN
-    OPEN c_textbook;
-    LOOP
-        FETCH c_textbook INTO v_textbook;
-        EXIT WHEN c_textbook%NOTFOUND;
+    vrecord vcursor%rowtype;
+begin
+    open vcursor;
+    loop
+        fetch vcursor into vrecord;
+        exit when vcursor%notfound;
         
-        DBMS_OUTPUT.PUT_LINE('이름: ' || v_textbook.name || ', 등급: ' || v_textbook.grade || ', 교과서 이름: ' || v_textbook.textbook_name);
-    END LOOP;
-    CLOSE c_textbook;
-EXCEPTION
-    WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('교과서 정보를 찾을 수 없습니다.');
-    WHEN OTHERS THEN
-        ROLLBACK;
-        RAISE;
-END procTextbookInfo;
+                dbms_output.put_line('교육과정명: ' || vrecord.교육과정명 || ', 교사명: ' || vrecord.교사명 || ', 별점: ' || vrecord.별점 || ', 책 제목: ' || vrecord."책 제목" || ', 출판사명: ' || vrecord."출판사명");
+                dbms_output.put_line('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
+    end loop;
+    close vcursor;
+exception
+    when no_data_found then
+        dbms_output.put_line('교과서 정보를 찾을 수 없습니다.');
+    when others then
+        rollback;
+        raise;
+end procTextbookInfo;
 /
 
-BEGIN
-    procTextbookInfo('김민곤');
-END;
+begin
+    procTextbookInfo(1);
+end;
 /
+
