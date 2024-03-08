@@ -114,10 +114,9 @@ BEGIN
     SELECT status INTO v_status
     FROM tbltraineelist
     WHERE seq_traineelist = :NEW.seq_traineelist;
-
-    -- status가 null이거나 중도탈락인 경우 데이터 삽입 못 함
-    IF v_status IS  not NULL OR v_status = '수료' THEN
-        RAISE_APPLICATION_ERROR(-20060, '상태가 수료일때만 가능 ');
+    -- status가 '수료'인 경우에만 데이터를 삽입할 수 있습니다.
+     IF v_status != '수료' or v_status is null THEN
+        RAISE_APPLICATION_ERROR(-20010, '수료 상태일 때만 평가를 입력할 수 있습니다.');
     END IF;
 END;
 -- 5번
