@@ -436,6 +436,7 @@ begin
 end;
 /
 
+
 -- B-16. 취업현황 조회 및 관리 (수정완료)
 -- 조회
 create or replace procedure procSelectemploymentStatus (
@@ -472,9 +473,12 @@ from tblEmploymentStatus es
 begin
 open vcursor;
 loop
-fetch vcursor into p_seq_employmentStatus, p_seq_traineeList, p_seq_openCurriculum, p_name, p_estatus, p_city, p_field, p_salary;
+fetch vcursor into p_seq_employmentStatus, p_seq_traineeList, p_seq_openCurriculum,
+p_name, p_estatus, p_city, p_field, p_salary;
 exit when vcursor%notfound;
-dbms_output.put_line('번호: ' || p_seq_employmentStatus || '| 교육생 목록 번호: ' || p_seq_traineeList || '| 교육 과정: ' || p_seq_openCurriculum || '| 취업 여부: ' || p_estatus || '| 지역: ' || p_city || '| 분야: ' || p_field || '| 연봉: ' || p_salary);
+dbms_output.put_line('번호: ' || p_seq_employmentStatus || '| 교육생 목록 번호: ' || p_seq_traineeList || 
+'| 교육 과정: ' || p_seq_openCurriculum || '| 취업 여부: ' || p_estatus || '| 지역: ' || p_city || 
+'| 분야: ' || p_field || '| 연봉: ' || p_salary);
 dbms_output.put_line('-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
 end loop;
 close vcursor;   
@@ -1471,7 +1475,6 @@ is
                                         on b.seq_textbook = rb.seq_textbook
                                             where osl.seq_teacher = rb.seq_teacher
                                             and tl.seq_trainee = pSeq_trainee;
-
     vrecord vcursor%rowtype;
 begin
     open vcursor;
@@ -1479,7 +1482,9 @@ begin
         fetch vcursor into vrecord;
         exit when vcursor%notfound;
         
-                dbms_output.put_line('교육과정명: ' || vrecord.교육과정명 || ', 교사명: ' || vrecord.교사명 || ', 별점: ' || vrecord.별점 || ', 책 제목: ' || vrecord."책 제목" || ', 출판사명: ' || vrecord."출판사명");
+                dbms_output.put_line('교육과정명: ' || vrecord.교육과정명 || ', 교사명: ' || vrecord.교사명 || ', 별점: ' 
+                || vrecord.별점 || ', 책 제목: ' || vrecord."책 제목" || ', 출판사명: '
+                || vrecord."출판사명");
                 dbms_output.put_line('----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
     end loop;
     close vcursor;

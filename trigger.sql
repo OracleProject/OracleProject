@@ -100,8 +100,8 @@ BEGIN
     END IF;
 END;
 /
-
-
+select * from tbltraineelist;
+/
 -- 4번 
 -- 수료자만 교육 과정 과정 평가를 할 수 있으므로 수료 완료인지 확인하고 수료 완료가 아닐 경우 insert하지 못하도록 하는 트리거
 CREATE OR REPLACE TRIGGER trgAllowEvaluation
@@ -115,13 +115,22 @@ BEGIN
     FROM tbltraineelist
     WHERE seq_traineelist = :NEW.seq_traineelist;
 
-    -- status가 '수료'인 경우에만 데이터를 삽입할 수 있습니다.
-     IF v_status != '수료' or v_status is null THEN
+    -- status가 '수료'가 아니고 null이 아닌 경우 데이터 삽입을 막습니다.
+    IF v_status != '수료' THEN
         RAISE_APPLICATION_ERROR(-20010, '수료 상태일 때만 평가를 입력할 수 있습니다.');
     END IF;
 END;
 /
 
+
+
+/
+/
+
+
+
+
+/
 -- 5번
 -- 성적은 종료 후 입력이 되니까 그 전에 입력 하지 못하도록 하는 트리거 
 CREATE OR REPLACE TRIGGER trgCheckEnddate
@@ -191,24 +200,52 @@ begin
 end;
 /
 
+select * from tbltrainees;
+
+/
+select * from tblopencurriculum; --seq_curriculumprogress FK 받음 , startdate , enddate 존재 , 2 
+select * from tblinterviewschedule; -- 면접스케줄 day 존재 , seq_trainee FK받음 , seq_schedule PK 존재  4 
+select * from tbltrainees; -- seq_trainee PK 존재 5 
+select * from tblcurriculumprogress; -- seq_curriculumprogress PK 존재  , Status 존재 3  
+select * from tbltraineelist; -- seq_traineelist PK 존재 , seq_trainee  FK존재,  seq_opencurriculum 존재  >>> 거쳐가야함  1 
+
+tbltraineelist 테이블의 seq_trainee FK , seq_opencurriculum FK 가 존재하고 tblopencurriculum 테이블의 seq_curriculumprogress FK 와 seq_opencurriculum PK가 존재하고 tblcurriculumprogress 테이블의 seq_curriculumprogress PK가 존재하고 tblinterviewschedule 테이블에 seq_schedule PK 가 존재하고 seq_trainee FK가 존재하고 tbltrainees 테이블에 seq_trainee PK가 존재할 때 
+tblopencurriculum 테이블의 seq_curriculumprogress 컬럼이 null이 아닌 경우에 tblinterviewschedule 테이블에 insert를 할 수 없도록하고 tbltraineelist 테이블의 seq_trainee 컬럼과 tbltrainees 테이블의 seq_trainee 컬럼이 연결되지 않은 학생은  tblinterviewschedule 테이블에 insert 할 수 있도록  plsql 를 통해 트리거를 짜
+/
 -- 8번  교육과정 기간 수료 중에 면접 스케줄을 잡을 수 없게
+/
+
 CREATE OR REPLACE TRIGGER trgInterviewScheduleInsert
 BEFORE INSERT ON tblinterviewschedule
 FOR EACH ROW
 DECLARE
-    v_count NUMBER;
+    v_curriculum_progress_seq NUMBER;
+    v_trainee_exists NUMBER;
 BEGIN
-    SELECT COUNT(*)
-    INTO v_count
-    FROM tblopencurriculum
-    WHERE :NEW.day BETWEEN startdate AND enddate;
+    -- Check if seq_trainee exists in tbltraineelist table
+    SELECT COUNT(*) INTO v_trainee_exists
+    FROM tbltraineelist
+    WHERE seq_trainee = :NEW.seq_trainee;
+    
+    -- If seq_trainee does not exist in tbltraineelist table, allow insert
+    IF v_trainee_exists = 0 THEN
+        RETURN;
+    END IF;
 
-    IF v_count > 0 THEN
-        RAISE_APPLICATION_ERROR(-20015, '이미 수강중인 학생입니다. ');
+    -- Check if seq_curriculumprogress is not null in tblopencurriculum table
+    SELECT seq_curriculumprogress
+    INTO v_curriculum_progress_seq
+    FROM tblopencurriculum
+    WHERE seq_curriculumprogress = (SELECT seq_opencurriculum FROM tbltraineelist WHERE seq_trainee = :NEW.seq_trainee);
+    
+    IF v_curriculum_progress_seq IS NOT NULL THEN
+        -- Raise an exception to prevent the insert
+        RAISE_APPLICATION_ERROR(-20015, 'seq_curriculumprogress 컬럼이 NULL이 아닌 경우에는 tblinterviewschedule 테이블에 insert 할 수 없습니다.');
     END IF;
 END;
 /
 
+/
 --9번 합격자만 교육생 목록으로 insert 할 수 있게 제한
 
 /
