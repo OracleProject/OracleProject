@@ -210,6 +210,7 @@ END;
 /
 
 --9번 합격자만 교육생 목록으로 insert 할 수 있게 제한
+
 /
 CREATE OR REPLACE TRIGGER trgPerInsertTraineelist
 BEFORE INSERT ON tbltraineelist
@@ -223,18 +224,17 @@ BEGIN
     FROM tblinterviewschedule
     WHERE seq_trainee = :NEW.seq_trainee;
 
-    -- tblinterviewResults 테이블에서 해당 seq_schedule의 Status 값을 가져옵니다.
+    -- 가져온 seq_schedule 값이 tblinterviewResults 테이블에 있는지 확인합니다.
     SELECT Status INTO v_status
     FROM tblinterviewResults
     WHERE seq_schedule = v_seq_schedule;
 
-    -- 가져온 Status 값이 '불합격'인 경우에만 삽입을 막습니다.
-    IF v_status = '불합격' THEN
-        RAISE_APPLICATION_ERROR(-20001, '불합격자입니다.');
+    -- 가져온 seq_schedule 값이 없거나, 가져온 Status 값이 '불합격'인 경우에만 삽입을 막습니다.
+    IF v_status = '불합격' OR v_seq_schedule IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20016, '불합격 또는 아직 면접을 보지 않았습니다.');
     END IF;
 END;
 /
-    
 
 -- 10번 수료자만 취업 현황 테이블에 insert 할수 있게
 CREATE OR REPLACE TRIGGER trgEmploymentStatus
@@ -251,7 +251,7 @@ BEGIN
     -- status가 '수료'인 경우에만 데이터를 삽입할 수 있습니다.
     IF v_status != '수료' or v_status is null THEN
        
-        RAISE_APPLICATION_ERROR(-20010, '수료 상태일 때만 평가를 입력할 수 있습니다.');
+        RAISE_APPLICATION_ERROR(-20017, '수료 상태일 때만 평가를 입력할 수 있습니다.');
     END IF;
 END;
 /
