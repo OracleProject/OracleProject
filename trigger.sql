@@ -196,17 +196,31 @@ CREATE OR REPLACE TRIGGER trgInterviewScheduleInsert
 BEFORE INSERT ON tblinterviewschedule
 FOR EACH ROW
 DECLARE
-    v_count NUMBER;
+    v_curriculum_progress_seq NUMBER;
+    v_trainee_exists NUMBER;
 BEGIN
-    SELECT COUNT(*)
-    INTO v_count
-    FROM tblopencurriculum
-    WHERE :NEW.day BETWEEN startdate AND enddate;
+    -- Check if seq_trainee exists in tbltraineelist table
+    SELECT COUNT(*) INTO v_trainee_exists
+    FROM tbltraineelist
+    WHERE seq_trainee = :NEW.seq_trainee;
+    
+    -- If seq_trainee does not exist in tbltraineelist table, allow insert
+    IF v_trainee_exists = 0 THEN
+        RETURN;
+    END IF;
 
-    IF v_count > 0 THEN
-        RAISE_APPLICATION_ERROR(-20015, '이미 수강중인 학생입니다. ');
+    -- Check if seq_curriculumprogress is not null in tblopencurriculum table
+    SELECT seq_curriculumprogress
+    INTO v_curriculum_progress_seq
+    FROM tblopencurriculum
+    WHERE seq_curriculumprogress = (SELECT seq_opencurriculum FROM tbltraineelist WHERE seq_trainee = :NEW.seq_trainee);
+    
+    IF v_curriculum_progress_seq IS NOT NULL THEN
+        -- Raise an exception to prevent the insert
+        RAISE_APPLICATION_ERROR(-20015, 'seq_curriculumprogress 컬럼이 NULL이 아닌 경우에는 tblinterviewschedule 테이블에 insert 할 수 없습니다.');
     END IF;
 END;
+/
 /
 
 --9번 합격자만 교육생 목록으로 insert 할 수 있게 제한
