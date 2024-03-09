@@ -1,105 +1,54 @@
-!SESSION 2024-02-29 22:20:17.609 -----------------------------------------------
+!SESSION 2024-03-09 21:00:33.867 -----------------------------------------------
 eclipse.buildId=M20090211-1700
 java.version=1.8.0_60
 java.vendor=Oracle Corporation
 BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ko_KR
 Command-line arguments:  -os win32 -ws win32 -arch x86
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:23.373
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:37.567
 !MESSAGE NLS unused message: OpenResourceDialog_openButton_text in: org.eclipse.ui.internal.ide.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:23.378
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:37.569
 !MESSAGE NLS unused message: OpenResourceDialog_openWithMenu_label in: org.eclipse.ui.internal.ide.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:23.383
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:37.570
 !MESSAGE NLS unused message: OpenResourceDialog_openWithButton_toolTip in: org.eclipse.ui.internal.ide.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:23.386
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:37.570
 !MESSAGE NLS unused message: CleanDialog_cleanSelectedTaskName in: org.eclipse.ui.internal.ide.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:23.389
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:37.571
 !MESSAGE NLS unused message: RecentWorkspacesPreferencePage_PromptAtStartup_label in: org.eclipse.ui.internal.ide.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:23.391
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:37.571
 !MESSAGE NLS unused message: RecentWorkspacesPreferencePage_RemoveButton_label in: org.eclipse.ui.internal.ide.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:55.508
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:39.783
 !MESSAGE NLS unused message: url_couldNotResolve_projectDoesNotExist in: org.eclipse.core.internal.utils.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.043
-!MESSAGE NLS unused message: Shortcuts_shortcutTab in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.045
-!MESSAGE NLS unused message: Shortcuts_selectShortcutsLabel in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.046
-!MESSAGE NLS unused message: Shortcuts_availableMenus in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.047
-!MESSAGE NLS unused message: Shortcuts_availableCategories in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.049
-!MESSAGE NLS unused message: Shortcuts_allShortcuts in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.050
-!MESSAGE NLS unused message: Util_listNull in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.051
-!MESSAGE NLS unused message: OpenBrowserHandler_NoInfoDialogTitle in: org.eclipse.ui.internal.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-02-29 22:20:56.054
-!MESSAGE NLS unused message: AboutFeaturesDialog_SimpleTitle in: org.eclipse.ui.internal.messages
-!SESSION 2024-03-01 10:20:00.374 -----------------------------------------------
-eclipse.buildId=M20090211-1700
-java.version=1.8.0_60
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=ko_KR
-Command-line arguments:  -os win32 -ws win32 -arch x86
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:06.339
-!MESSAGE NLS unused message: OpenResourceDialog_openButton_text in: org.eclipse.ui.internal.ide.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:06.341
-!MESSAGE NLS unused message: OpenResourceDialog_openWithMenu_label in: org.eclipse.ui.internal.ide.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:06.342
-!MESSAGE NLS unused message: OpenResourceDialog_openWithButton_toolTip in: org.eclipse.ui.internal.ide.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:06.344
-!MESSAGE NLS unused message: CleanDialog_cleanSelectedTaskName in: org.eclipse.ui.internal.ide.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:06.345
-!MESSAGE NLS unused message: RecentWorkspacesPreferencePage_PromptAtStartup_label in: org.eclipse.ui.internal.ide.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:06.347
-!MESSAGE NLS unused message: RecentWorkspacesPreferencePage_RemoveButton_label in: org.eclipse.ui.internal.ide.messages
-
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:34.729
-!MESSAGE NLS unused message: url_couldNotResolve_projectDoesNotExist in: org.eclipse.core.internal.utils.messages
-
-!ENTRY org.eclipse.core.resources 2 10035 2024-03-01 10:20:34.887
+!ENTRY org.eclipse.core.resources 2 10035 2024-03-09 21:00:39.879
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.658
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.175
 !MESSAGE NLS unused message: Shortcuts_shortcutTab in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.668
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.176
 !MESSAGE NLS unused message: Shortcuts_selectShortcutsLabel in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.669
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.176
 !MESSAGE NLS unused message: Shortcuts_availableMenus in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.672
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.177
 !MESSAGE NLS unused message: Shortcuts_availableCategories in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.674
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.178
 !MESSAGE NLS unused message: Shortcuts_allShortcuts in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.675
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.178
 !MESSAGE NLS unused message: Util_listNull in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.676
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.179
 !MESSAGE NLS unused message: OpenBrowserHandler_NoInfoDialogTitle in: org.eclipse.ui.internal.messages
 
-!ENTRY org.eclipse.osgi 2 1 2024-03-01 10:20:35.679
+!ENTRY org.eclipse.osgi 2 1 2024-03-09 21:00:40.179
 !MESSAGE NLS unused message: AboutFeaturesDialog_SimpleTitle in: org.eclipse.ui.internal.messages
