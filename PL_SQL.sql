@@ -481,7 +481,7 @@ end procSelectemploymentStatus;
 /
 
 begin
-    procSelectemploymentStatus(1);
+    procSelectemploymentStatus(7);
 end;
 /
 
@@ -670,151 +670,10 @@ begin
 end;
 /
 
-
--- 1.2.배점 출력
-create or replace procedure procTestInfoOut(
-    pSeq_teacher in number,
-    pSeq_openSubjectList in number
-) 
-is
- cursor vcursor is
-        select 
-        ti.seq_openSubjectList, 
-        ti.writtenpoints, 
-        ti.practicalpoints, 
-        ti.attendancepoints
-        from tblTestInfo ti
-            inner join tblOpenSubjectList osl
-                on ti.seq_openSubjectList = osl.seq_openSubjectList
-                    where osl.seq_teacher = pSeq_teacher
-                    and osl.seq_OpenSubjectList = pSeq_openSubjectList
-                    and osl.enddate < sysdate;    
-    
-    vSeq_opensubjectlist tblopensubjectlist.seq_opensubjectlist%type;
-    vWrittenpoints tbltestinfo.writtenpoints%type;
-    vPracticalpoint tbltestinfo.practicalpoints%type;
-    vAttendancepoints tbltestinfo.attendancepoints%type;
-    
-begin
-    -- 배점 출력
-    open vcursor;
-    loop
-        fetch vcursor into vSeq_opensubjectlist, vWrittenpoints, vPracticalpoint, vAttendancepoints;
-        exit when vcursor%notfound;
-
-        -- 결과 출력
-        dbms_output.put_line('개설 과목 목록 번호: ' || vSeq_opensubjectlist);
-        dbms_output.put_line('필기 배점: ' || vWrittenpoints);
-        dbms_output.put_line('실기 배점: ' || vPracticalpoint);
-        dbms_output.put_line('출결 배점: ' || vAttendancepoints);
-        dbms_output.put_line('-----------------------------------------------------------------------------------');
-
-    end loop;
-    close vcursor;    
-end procTestInfoOut;
-/
-
-begin
-    procTestInfoOut(1, 1);
-end;
-/
-        
-
--- 2. 교사는 자신이 강의를 마친 과목의 목록 중에서 특정 과목을 선택하고 해당 과목의 배점 정보를 출결, 필기, 실기로 구분해서 등록할 수 있어야 한다.(위에서 구현 완료) 시험 날짜, 시험 문제를 추가할 수 있어야 한다.
--- 2.5. 시험 날짜 추가
-create or replace procedure procTestDateIn (
-    pSeq_teacher in number,
-    pSeq_testInfo in number,
-    pWrittenDate in date,
-    pPracticalDate in date
-) 
-is
-    vEnddate date;
-begin
-    -- tblopensubjectlist 테이블의 enddate 확인
-    select osl.enddate into vEnddate
-    from tblOpenSubjectList osl
-        inner join tblTestInfo ti
-            on ti.seq_openSubjectList = osl.seq_openSubjectList
-                where osl.seq_teacher = pSeq_teacher
-                and ti.seq_testinfo = pSeq_testInfo;
-
-    -- enddate가 오늘 이전인 경우에만 시험 날짜 추가
-    if vEnddate < sysdate then
-        -- 시험 날짜 추가
-        update tblTestInfo
-        set writtenDate = TO_DATE(pWrittenDate, 'YYYY-MM-DD'), 
-            practicalDate = TO_DATE(pPracticalDate, 'YYYY-MM-DD')
-        where seq_testInfo = pSeq_testInfo;
-
-        if sql%rowcount = 0 then
-            dbms_output.put_line('해당 시험 정보가 존재하지 않습니다.');
-        else
-            dbms_output.put_line('시험 날짜가 추가되었습니다.');
-        end if;
-    else
-        dbms_output.put_line('해당 과목은 아직 종료되지 않았습니다.');
-    end if;
-end procTestDateIn;
-/
-
-begin
-    procTestDateIn(1, 1, TO_DATE('2023-10-03', 'YYYY-MM-DD'), TO_DATE('2023-10-04', 'YYYY-MM-DD'));
-end;
-/
-
-
--- 2.6. 시험 문제 추가
-create or replace procedure procTestQuestionIn (
-    pSeq_teacher in number,
-    pSeq_question in number,
-    pSeq_openSubjectList in number,
-    pSeq_examPaper in number,
-    pQuestion in varchar2,
-    pAnswer in varchar2,
-    pKind in varchar2    
-) 
-is
-    vEnddate date;
-begin
-    -- tblopensubjectlist 테이블의 enddate 확인
-    select osl.enddate into vEnddate
-    from tblOpenSubjectList osl
-        inner join tblTestInfo ti 
-            on ti.seq_openSubjectList = osl.seq_openSubjectList
-                where osl.seq_teacher = pSeq_teacher
-                    and ti.seq_openSubjectList = pSeq_openSubjectList;
-
-    -- enddate가 오늘 이전인 경우에만 시험 문제 추가
-    if vEnddate < sysdate then
-        -- 시험 문제 추가
-        insert into tblQuestion (seq_question, question, answer)
-        values (pSeq_question, pQuestion, pAnswer);
-        
-        insert into Tblexampaper (seq_examPaper, seq_question, seq_openSubjectList, kind) 
-        values (pSeq_examPaper, pSeq_question, pSeq_openSubjectList, pKind);
-
-        if sql%rowcount = 0 then
-            dbms_output.put_line('해당 시험 정보가 존재하지 않습니다.');
-        else
-            dbms_output.put_line('시험 문제가 추가되었습니다.');
-        end if;
-    else
-        dbms_output.put_line('해당 과목은 아직 종료되지 않았습니다.');
-    end if;
-end procTestQuestionIn;
-/
-
-begin
-    procTestQuestionIn(1, 1, 1, 1, '자바 소스 확장자는?', '3', '필기');
-end;
-/
-
-
 -- 교사 번호를 입력하면 본인이 수강 중인 과목 목록 다 출력
--- 4. 과목 목록 출력 시 과목번호, 과정명, 과정기간(시작 년월일, 끝 년월일), 강의실, 과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 출결, 필기, 실기 배점 등이 출력되고, 
+-- 과목 목록 출력 시 과목번호, 과정명, 과정기간(시작 년월일, 끝 년월일), 강의실, 과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 출결, 필기, 실기 배점 등이 출력되고, 
 -- 특정 과목을 과목번호로 선택 시 출결 배점, 필기 배점, 실기 배점, 시험 날짜, 시험 문제를 입력할 수 있는 화면으로 연결되어야 한다. (자바에서 구현해야할 듯)
--- 5. 배점 등록이 안 된 과목인 경우는 과목 정보가 출력될 때 배점 부분은 null 값으로 출력한다.
+-- 배점 등록이 안 된 과목인 경우는 과목 정보가 출력될 때 배점 부분은 null 값으로 출력한다.
 create or replace procedure procSubjectListOut (
     pSeq_teacher in number
 ) 
@@ -877,64 +736,90 @@ end procSubjectListOut;
 begin
     procSubjectListOut(1);
 end;
+/        
+
+-- 2. 교사는 자신이 강의를 마친 과목의 목록 중에서 특정 과목을 선택하고 해당 과목의 배점 정보를 출결, 필기, 실기로 구분해서 등록할 수 있어야 한다.(위에서 구현 완료) 시험 날짜, 시험 문제를 추가할 수 있어야 한다.
+-- 2.5. 시험 날짜 추가
+create or replace procedure procTestDateIn (
+    pSeq_teacher in number,
+    pSeq_testInfo in number,
+    pWrittenDate in date,
+    pPracticalDate in date
+) 
+is
+    vEnddate date;
+begin
+    -- tblopensubjectlist 테이블의 enddate 확인
+    select osl.enddate into vEnddate
+    from tblOpenSubjectList osl
+        inner join tblTestInfo ti
+            on ti.seq_openSubjectList = osl.seq_openSubjectList
+                where osl.seq_teacher = pSeq_teacher
+                and ti.seq_testinfo = pSeq_testInfo;
+
+        -- 시험 날짜 추가
+        update tblTestInfo
+        set writtenDate = TO_DATE(pWrittenDate, 'YYYY-MM-DD'), 
+            practicalDate = TO_DATE(pPracticalDate, 'YYYY-MM-DD')
+        where seq_testInfo = pSeq_testInfo;
+
+        if sql%rowcount = 0 then
+            dbms_output.put_line('해당 시험 정보가 존재하지 않습니다.');
+        else
+            dbms_output.put_line('시험 날짜가 추가되었습니다.');
+        end if;
+end procTestDateIn;
+/
+
+begin
+    procTestDateIn(1, 1, TO_DATE('2023-10-03', 'YYYY-MM-DD'), TO_DATE('2023-10-04', 'YYYY-MM-DD'));
+end;
+/
+
+
+-- 2.6. 시험 문제 추가
+create or replace procedure procTestQuestionIn (
+    pSeq_teacher in number,
+    pSeq_question in number,
+    pSeq_openSubjectList in number,
+    pSeq_examPaper in number,
+    pQuestion in varchar2,
+    pAnswer in varchar2,
+    pKind in varchar2    
+) 
+is
+    vEnddate date;
+begin
+    -- tblopensubjectlist 테이블의 enddate 확인
+    select osl.enddate into vEnddate
+    from tblOpenSubjectList osl
+        inner join tblTestInfo ti 
+            on ti.seq_openSubjectList = osl.seq_openSubjectList
+                where osl.seq_teacher = pSeq_teacher
+                    and ti.seq_openSubjectList = pSeq_openSubjectList;
+
+        -- 시험 문제 추가
+        insert into tblQuestion (seq_question, question, answer)
+        values (pSeq_question, pQuestion, pAnswer);
+        
+        insert into Tblexampaper (seq_examPaper, seq_question, seq_openSubjectList, kind) 
+        values (pSeq_examPaper, pSeq_question, pSeq_openSubjectList, pKind);
+
+        if sql%rowcount = 0 then
+            dbms_output.put_line('해당 시험 정보가 존재하지 않습니다.');
+        else
+            dbms_output.put_line('시험 문제가 추가되었습니다.');
+        end if;
+end procTestQuestionIn;
+/
+
+begin
+    procTestQuestionIn(1, 1, 1, 1, '자바 소스 확장자는?', '3', '필기');
+end;
 /
 
 
 --c-3 성적 입출력
--- 3.1. 성적 입력
--- 3.1.1. 교사는 자신이 강의를 마친 과목의 목록 중에서 특정 과목을 선택한다. > 교육생 정보가 출력
-create or replace procedure procTraineeInfoOut (
-    pSeq_teacher in number,
-    pSeq_openSubjectList in number
-) 
-is
- cursor vcursor is
-        select 
-        distinct osl.seq_subjectList "과목 목록 번호",
-        vt.seq_trainee "학생 번호",
-        vt.t_name "이름",
-        vt.t_id "아이디",
-        vt.t_tel "전화번호"
-        from  vwTrainees vt
-            inner join tblOpenSubjectList osl
-                on osl.seq_openCurriculum = vt.seq_openCurriculum
-                    where osl.seq_teacher = pSeq_teacher
-                    and osl.seq_openSubjectList = pSeq_openSubjectList
-                    and osl.enddate < sysdate;
-                            
-    vrecord vcursor%rowtype;
-    
-begin
-    -- 정보 출력
-    open vcursor;
-    loop
-        fetch vcursor into vrecord;
-        exit when vcursor%notfound;
-        
-        -- 정보 출력
-        dbms_output.put_line('과목 목록 번호: ' || vrecord."과목 목록 번호");
-        dbms_output.put_line('학생 번호: ' || vrecord."학생 번호");
-        dbms_output.put_line('이름: ' || vrecord."이름");
-        dbms_output.put_line('아이디: ' || vrecord."아이디");
-        dbms_output.put_line('전화번호: ' || vrecord."전화번호");
-        dbms_output.put_line('-----------------------------------------------------------------------------------');
-    end loop;
-    
-    close vcursor;
-exception
-    when no_data_found then
-        dbms_output.put_line('해당 정보가 없습니다.');
-    when others then
-        dbms_output.put_line('오류 발생: ' || SQLERRM);
-end procTraineeInfoOut;
-/
-
-begin
-    procTraineeInfoOut (1, 1);
-end;
-/
-
--- 3.2. 성적 출력
 create or replace procedure procTestGradesOut (
     pSeq_teacher in number,
     pSeq_openSubjectList in number
@@ -1020,6 +905,7 @@ create or replace procedure procTraineeAttendanceOut (
 is
     cursor vcursor is
         select 
+        distinct
         vc.seq_openCurriculum "개설 교육과정 번호",
         asl.seq_subject "과목 번호",
         tl.seq_trainee "교육생 번호",

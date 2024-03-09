@@ -704,18 +704,30 @@ from tblTeacher t
 
 -- 혜정
 --c-2 배점 입출력
--- 1. 교사가 강의를 마친 과목에 대한 성적 처리를 위해서 배점 입출력을 할 수 있어야 한다.
--- 1.1. 배점 출력
+-- 교사가 강의를 마친 과목에 대한 성적 처리를 위해서 배점 입출력을 할 수 있어야 한다.
+-- 과목 목록 출력 시 과목번호, 과정명, 과정기간(시작 년월일, 끝 년월일), 강의실, 과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 출결, 필기, 실기 배점 등이 출력되고, 
+-- 특정 과목을 과목번호로 선택 시 출결 배점, 필기 배점, 실기 배점, 시험 날짜, 시험 문제를 입력할 수 있는 화면으로 연결되어야 한다.
 select 
-ti.seq_openSubjectList "과목 목록 번호",
+vc.seq_subject "과목 번호",
+vc.c_name "과정명",
+vc.oc_startDate "과정 시작일",
+vc.oc_enddate "과정 종료일",
+vc.r_name 강의실,
+vc.s_name 과목명,
+vc.osl_startdate "과목 시작일",
+vc.osl_enddate "과목 종료일",
+b.name 교재명,
+ti.attendancePoints "출결 배점",
 ti.writtenPoints "필기 배점",
-ti.practicalPoints "실기 배점",
-ti.attendancePoints "출결 배점"
-from tblTestInfo ti
-    inner join tblOpenSubjectList osl
-        on ti.seq_openSubjectList = osl.seq_openSubjectList
-            where osl.endDate < sysdate;
-
+ti.practicalPoints "실기 배점"
+from vwCurriculum vc
+    inner join tblTextbook b
+        on b.seq_textbook = vc.seq_textbook
+            inner join tblTestInfo ti
+                on ti.seq_openSubjectList = vc.seq_openSubjectList
+                    where seq_subject = 1 -- 특정 과목
+                    and vc.osl_endDate < sysdate;
+                    
 -- 2. 교사는 자신이 강의를 마친 과목의 목록 중에서 특정 과목을 선택하고 해당 과목의 배점 정보를 출결, 필기, 실기로 구분해서 등록할 수 있어야 한다. 시험 날짜, 시험 문제를 추가할 수 있어야 한다.
 -- 2.1. 특정 과목 선택
 insert into tblTestInfo(seq_testInfo, seq_openSubjectList) 
@@ -742,7 +754,6 @@ set writtenDate = TO_DATE('2023-10-03', 'YYYY-MM-DD'),
     practicalDate = TO_DATE('2023-10-04', 'YYYY-MM-DD')
 where seq_openSubjectList = 1;
 
-
 -- 2.6. 시험 문제 추가
 insert into tblQuestion
 values(1,'자바 소스 확장자는?','3');
@@ -750,29 +761,6 @@ values(1,'자바 소스 확장자는?','3');
 -- 과목과 연결
 insert into tblExampaper(seq_attendancepapers, seq_question, seq_subject, kind) 
 values (1, 1, 1, '필기');
-
---4. 과목 목록 출력 시 과목번호, 과정명, 과정기간(시작 년월일, 끝 년월일), 강의실, 과목명, 과목기간(시작 년월일, 끝 년월일), 교재명, 출결, 필기, 실기 배점 등이 출력되고, 
--- 특정 과목을 과목번호로 선택 시 출결 배점, 필기 배점, 실기 배점, 시험 날짜, 시험 문제를 입력할 수 있는 화면으로 연결되어야 한다.
--- 4.1. 과목 목록 출력
-select 
-vc.seq_subject "과목 번호",
-vc.c_name "과정명",
-vc.oc_startDate "과정 시작일",
-vc.oc_enddate "과정 종료일",
-vc.r_name 강의실,
-vc.s_name 과목명,
-vc.osl_startdate "과목 시작일",
-vc.osl_enddate "과목 종료일",
-b.name 교재명,
-ti.attendancePoints "출결 배점",
-ti.writtenPoints "필기 배점",
-ti.practicalPoints "실기 배점"
-from vwCurriculum vc
-    inner join tblTextbook b
-        on b.seq_textbook = vc.seq_textbook
-            inner join tblTestInfo ti
-                on ti.seq_openSubjectList = vc.seq_openSubjectList
-                    where seq_subject = 1; -- 특정 과목
 
 --5. 배점 등록이 안 된 과목인 경우는 과목 정보가 출력될 때 배점 부분은 null 값으로 출력한다.
 select 
@@ -810,33 +798,29 @@ from vwGrades vg
             where to_char(vg.osl_endDate, 'yyyy-mm-dd') < to_char(sysdate, 'yyyy-mm-dd'); -- 현재보다 과목 종료일이 과거인 경우
 
 
--- 2. 교사는 자신이 강의를 마친 과목의 목록 중에서 특정 과목을 선택하면, 교육생 정보가 출력되고, 특정 교육생 정보를 선택하면, 해당 교육생의 시험 점수를 입력할 수 있어야 한다. 이때, 출결, 필기, 실기 점수를 구분해서 입력할 수 있어야 한다.
--- 2.1. 특정 과목 선택
-select 
-distinct osl.seq_subjectList "과목 목록 번호",
-vt.seq_trainee "학생 번호",
-vt.t_name "이름",
-vt.t_id "아이디",
-vt.t_tel "전화번호"
-from  vwTrainees vt
-    inner join tblOpenSubjectList osl
-        on osl.seq_openCurriculum = vt.seq_openCurriculum
-            where osl.seq_subjectList = 1; -- 특정과목
-                    
--- 2.2. 특정 교육생 선택
+-- 2. 교사는 자신이 강의를 마친 과목의 목록 중에서 특정 과목을 선택하면, 교육생 정보가 출력되고, 특정 교육생 정보를 선택하면, 해당 교육생의 시험 점수를 입력할 수 있어야 한다. 이때, 출결, 필기, 실기 점수를 구분해서 입력할 수 있어야 한다.      
+-- 특정 과목을 과목번호로 선택시 교육생 정보(이름, 전화번호, 수료 또는 중도탈락), 날짜 및 성적이 출결, 필기, 실기 점수로 구분되어서 출력되어야 한다. 
+-- 특정 과목, 교육생 선택
 select 
 distinct sl.seq_subject "과목 번호",
 vt.seq_trainee "학생 번호",
 vt.t_name "이름",
 vt.t_id "아이디",
-vt.t_tel "전화번호"
+vt.t_tel "전화번호",
+vt.tl_status "상태",
+vt.tl_day "상태 날짜",
+vg.attendanceGrade "출결 점수",
+vg.writtenGrade "필기 점수",
+vg.practicalGrade "실기 점수"
 from  vwTrainees vt
-    inner join tblOpenSubjectList osl
-        on osl.seq_openCurriculum = vt.seq_openCurriculum
-            inner join tblSubjectList sl
-                on sl.seq_subjectList = osl.seq_subjectList
-                    where sl.seq_subject = 1 -- 특정과목
-                    and vt.seq_trainee = 71; -- 특정 교육생
+    inner join vwGrades vg
+        on vt.seq_traineeList = vg.seq_traineeList
+            inner join tblOpenSubjectList osl
+                on osl.seq_openCurriculum = vt.seq_openCurriculum
+                    inner join tblSubjectList sl
+                        on sl.seq_subjectList = osl.seq_subjectList
+                            where sl.seq_subject = 1 -- 특정과목
+                            and vt.seq_trainee = 71; -- 특정 교육생
                     
 -- 2.3. 성적 입력
 INSERT INTO tblGrades(SEQ_GRADES, SEQ_TRAINEELIST, SEQ_testInfo, WRITTENGRADE, PRACTICALGRADE, ATTENDANCEGRADE)
@@ -869,23 +853,6 @@ from vwCurriculum vc
                 on ti.seq_openSubjectList = vc.seq_openSubjectList
                     left outer join tblGrades g
                         on g.seq_testInfo = ti.seq_testInfo;
-
-
--- 특정 과목을 과목번호로 선택시 교육생 정보(이름, 전화번호, 수료 또는 중도탈락), 날짜 및 성적이 출결, 필기, 실기 점수로 구분되어서 출력되어야 한다. 
--- 3.2. 특정 과목(자바) 
-select 
-distinct vt.seq_traineeList "교육생 목록 번호",
-vt.t_name 이름,
-vt.t_tel 전화번호,
-vt.tl_status "상태",
-vt.tl_day "상태 날짜",
-vg.attendanceGrade "출결 점수",
-vg.writtenGrade "필기 점수",
-vg.practicalGrade "실기 점수"
-from vwGrades vg
-    inner join vwTrainees vt
-        on vt.seq_traineeList = vg.seq_traineeList
-            where vg.seq_subject = 1; --특정 과목
                                             
 -- 4. 성적 등록 여부는 교육생 전체에 대해서 성적을 등록했는지의 여부를 출력한다.
 select 
@@ -904,6 +871,32 @@ from tblGrades g
 --c-4 출결 관리 및 출결 조회
 -- 1. 교사가 강의한 과정에 한해 선택하는 경우 모든 교육생의 출결을 조회할 수 있어야 한다.
 select 
+distinct
+oc.seq_openCurriculum "개설 교육과정 번호",
+asl.seq_subject "과목 번호",
+tl.seq_trainee "교육생 번호",
+a.day 날짜,
+to_char(a.inTime, 'HH24:MI:SS') "출근 시간",
+to_char(a.outTime, 'HH24:MI:SS') "퇴근 시간",
+tas.situation "상태"
+from tblOpenCurriculum oc
+    inner join tblOpenSubjectList osl
+        on osl.seq_openCurriculum = oc.seq_openCurriculum
+            inner join tblAvailableSubjectList asl
+                on asl.seq_teacher = osl.seq_teacher
+                    inner join tblTraineeList tl
+                        on tl.seq_openCurriculum = oc.seq_openCurriculum
+                            inner join tblAttendance a
+                                on a.seq_traineeList = tl.seq_traineeList
+                                    inner join tblAttendanceStatus tas
+                                        on tas.seq_attendanceStatus = a.seq_attendanceStatus
+                                        where osl.seq_teacher = 1 -- 특정교사
+                                            order by tl.seq_trainee;
+                                                     
+                                                        
+-- 2. 기간, 특정 과정, 특정 과목                                                      
+select 
+distinct
 oc.seq_openCurriculum "개설 교육과정 번호",
 asl.seq_subject "과목 번호",
 tl.seq_trainee "교육생 번호",

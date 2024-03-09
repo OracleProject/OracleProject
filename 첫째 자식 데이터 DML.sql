@@ -12,107 +12,108 @@ from tblTestInfo ti
                         
 --시험지(pk명 수정해야됨)
 --자바
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (1, 1, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (2, 2, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (3, 3, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (4, 4, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (5, 5, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (6, 6, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (7, 7, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (8, 8, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (9, 9, 1, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (10, 10, 1, '필기');
+INSERT INTO Tblexampaper VALUES (1, 1, 1, '필기');
+INSERT INTO Tblexampaper VALUES (2, 2, 1, '필기');
+INSERT INTO Tblexampaper VALUES (3, 3, 1, '필기');
+INSERT INTO Tblexampaper VALUES (4, 4, 1, '필기');
+INSERT INTO Tblexampaper VALUES (5, 5, 1, '필기');
+INSERT INTO Tblexampaper VALUES (6, 6, 1, '필기');
+INSERT INTO Tblexampaper VALUES (7, 7, 1, '필기');
+INSERT INTO Tblexampaper VALUES (8, 8, 1, '필기');
+INSERT INTO Tblexampaper VALUES (9, 9, 1, '필기');
+INSERT INTO Tblexampaper VALUES (10, 10, 1, '필기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (11, 1, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (12, 2, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (13, 3, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (14, 4, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (15, 5, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (16, 6, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (17, 7, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (18, 8, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (19, 9, 8, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (20, 10, 8, '필기');
+INSERT INTO Tblexampaper VALUES (11, 1, 8, '필기');
+INSERT INTO Tblexampaper VALUES (12, 2, 8, '필기');
+INSERT INTO Tblexampaper VALUES (13, 3, 8, '필기');
+INSERT INTO Tblexampaper VALUES (14, 4, 8, '필기');
+INSERT INTO Tblexampaper VALUES (15, 5, 8, '필기');
+INSERT INTO Tblexampaper VALUES (16, 6, 8, '필기');
+INSERT INTO Tblexampaper VALUES (17, 7, 8, '필기');
+INSERT INTO Tblexampaper VALUES (18, 8, 8, '필기');
+INSERT INTO Tblexampaper VALUES (19, 9, 8, '필기');
+INSERT INTO Tblexampaper VALUES (20, 10, 8, '필기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (21, 1, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (22, 2, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (23, 3, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (24, 4, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (25, 5, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (26, 6, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (27, 7, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (28, 8, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (29, 9, 10, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (30, 10, 10, '필기');
+INSERT INTO Tblexampaper VALUES (21, 1, 10, '필기');
+INSERT INTO Tblexampaper VALUES (22, 2, 10, '필기');
+INSERT INTO Tblexampaper VALUES (23, 3, 10, '필기');
+INSERT INTO Tblexampaper VALUES (24, 4, 10, '필기');
+INSERT INTO Tblexampaper VALUES (25, 5, 10, '필기');
+INSERT INTO Tblexampaper VALUES (26, 6, 10, '필기');
+INSERT INTO Tblexampaper VALUES (27, 7, 10, '필기');
+INSERT INTO Tblexampaper VALUES (28, 8, 10, '필기');
+INSERT INTO Tblexampaper VALUES (29, 9, 10, '필기');
+INSERT INTO Tblexampaper VALUES (30, 10, 10, '필기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (31, 1, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (32, 2, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (33, 3, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (34, 4, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (35, 5, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (36, 6, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (37, 7, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (38, 8, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (39, 9, 12, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (40, 10, 12, '필기');
+INSERT INTO Tblexampaper VALUES (31, 1, 12, '필기');
+INSERT INTO Tblexampaper VALUES (32, 2, 12, '필기');
+INSERT INTO Tblexampaper VALUES (33, 3, 12, '필기');
+INSERT INTO Tblexampaper VALUES (34, 4, 12, '필기');
+INSERT INTO Tblexampaper VALUES (35, 5, 12, '필기');
+INSERT INTO Tblexampaper VALUES (36, 6, 12, '필기');
+INSERT INTO Tblexampaper VALUES (37, 7, 12, '필기');
+INSERT INTO Tblexampaper VALUES (38, 8, 12, '필기');
+INSERT INTO Tblexampaper VALUES (39, 9, 12, '필기');
+INSERT INTO Tblexampaper VALUES (40, 10, 12, '필기');
 
 --오라클 필기
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (41, 11, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (42, 12, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (43, 13, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (44, 14, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (45, 15, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (46, 16, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (47, 17, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (48, 18, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (49, 19, 9, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (50, 20, 9, '필기');
+INSERT INTO Tblexampaper VALUES (41, 11, 9, '필기');
+INSERT INTO Tblexampaper VALUES (42, 12, 9, '필기');
+INSERT INTO Tblexampaper VALUES (43, 13, 9, '필기');
+INSERT INTO Tblexampaper VALUES (44, 14, 9, '필기');
+INSERT INTO Tblexampaper VALUES (45, 15, 9, '필기');
+INSERT INTO Tblexampaper VALUES (46, 16, 9, '필기');
+INSERT INTO Tblexampaper VALUES (47, 17, 9, '필기');
+INSERT INTO Tblexampaper VALUES (48, 18, 9, '필기');
+INSERT INTO Tblexampaper VALUES (49, 19, 9, '필기');
+INSERT INTO Tblexampaper VALUES (50, 20, 9, '필기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (51, 11, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (52, 12, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (53, 13, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (54, 14, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (55, 15, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (56, 16, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (57, 17, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (58, 18, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (59, 19, 11, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (60, 20, 11, '필기');
+INSERT INTO Tblexampaper VALUES (51, 11, 11, '필기');
+INSERT INTO Tblexampaper VALUES (52, 12, 11, '필기');
+INSERT INTO Tblexampaper VALUES (53, 13, 11, '필기');
+INSERT INTO Tblexampaper VALUES (54, 14, 11, '필기');
+INSERT INTO Tblexampaper VALUES (55, 15, 11, '필기');
+INSERT INTO Tblexampaper VALUES (56, 16, 11, '필기');
+INSERT INTO Tblexampaper VALUES (57, 17, 11, '필기');
+INSERT INTO Tblexampaper VALUES (58, 18, 11, '필기');
+INSERT INTO Tblexampaper VALUES (59, 19, 11, '필기');
+INSERT INTO Tblexampaper VALUES (60, 20, 11, '필기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (61, 11, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (62, 12, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (63, 13, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (64, 14, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (65, 15, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (66, 16, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (67, 17, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (68, 18, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (69, 19, 2, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (70, 20, 2, '필기');
+INSERT INTO Tblexampaper VALUES (61, 11, 2, '필기');
+INSERT INTO Tblexampaper VALUES (62, 12, 2, '필기');
+INSERT INTO Tblexampaper VALUES (63, 13, 2, '필기');
+INSERT INTO Tblexampaper VALUES (64, 14, 2, '필기');
+INSERT INTO Tblexampaper VALUES (65, 15, 2, '필기');
+INSERT INTO Tblexampaper VALUES (66, 16, 2, '필기');
+INSERT INTO Tblexampaper VALUES (67, 17, 2, '필기');
+INSERT INTO Tblexampaper VALUES (68, 18, 2, '필기');
+INSERT INTO Tblexampaper VALUES (69, 19, 2, '필기');
+INSERT INTO Tblexampaper VALUES (70, 20, 2, '필기');
 
 --웹(21-30)
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (71, 21, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (72, 22, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (73, 23, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (74, 24, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (75, 25, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (76, 26, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (77, 27, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (78, 28, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (79, 29, 3, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (80, 30, 3, '필기');
+INSERT INTO Tblexampaper VALUES (71, 21, 3, '필기');
+INSERT INTO Tblexampaper VALUES (72, 22, 3, '필기');
+INSERT INTO Tblexampaper VALUES (73, 23, 3, '필기');
+INSERT INTO Tblexampaper VALUES (74, 24, 3, '필기');
+INSERT INTO Tblexampaper VALUES (75, 25, 3, '필기');
+INSERT INTO Tblexampaper VALUES (76, 26, 3, '필기');
+INSERT INTO Tblexampaper VALUES (77, 27, 3, '필기');
+INSERT INTO Tblexampaper VALUES (78, 28, 3, '필기');
+INSERT INTO Tblexampaper VALUES (79, 29, 3, '필기');
+INSERT INTO Tblexampaper VALUES (80, 30, 3, '필기');
 
 --JSP
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (81, 31, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (82, 32, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (83, 33, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (84, 34, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (85, 35, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (86, 36, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (87, 37, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (88, 38, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (89, 39, 4, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (90, 40, 4, '필기');
+INSERT INTO Tblexampaper VALUES (81, 31, 4, '필기');
+INSERT INTO Tblexampaper VALUES (82, 32, 4, '필기');
+INSERT INTO Tblexampaper VALUES (83, 33, 4, '필기');
+INSERT INTO Tblexampaper VALUES (84, 34, 4, '필기');
+INSERT INTO Tblexampaper VALUES (85, 35, 4, '필기');
+INSERT INTO Tblexampaper VALUES (86, 36, 4, '필기');
+INSERT INTO Tblexampaper VALUES (87, 37, 4, '필기');
+INSERT INTO Tblexampaper VALUES (88, 38, 4, '필기');
+INSERT INTO Tblexampaper VALUES (89, 39, 4, '필기');
+INSERT INTO Tblexampaper VALUES (90, 40, 4, '필기');
+
 
 --Spring(41-50)
 
@@ -129,201 +130,179 @@ INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList
 --React(101-110)
 
 --ElasticSearch
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (91, 111, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (92, 112, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (93, 113, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (94, 114, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (95, 115, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (96, 116, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (97, 117, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (98, 118, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (99, 119, 5, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (100, 120, 5, '필기');
+--ElasticSearch
+INSERT INTO Tblexampaper VALUES (91, 111, 5, '필기');
+INSERT INTO Tblexampaper VALUES (92, 112, 5, '필기');
+INSERT INTO Tblexampaper VALUES (93, 113, 5, '필기');
+INSERT INTO Tblexampaper VALUES (94, 114, 5, '필기');
+INSERT INTO Tblexampaper VALUES (95, 115, 5, '필기');
+INSERT INTO Tblexampaper VALUES (96, 116, 5, '필기');
+INSERT INTO Tblexampaper VALUES (97, 117, 5, '필기');
+INSERT INTO Tblexampaper VALUES (98, 118, 5, '필기');
+INSERT INTO Tblexampaper VALUES (99, 119, 5, '필기');
+INSERT INTO Tblexampaper VALUES (100, 120, 5, '필기');
 
 --데이터 구조 알고리즘(121-130)
 
 --컴퓨터 이론(131-140)
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (101, 131, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (102, 132, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (103, 133, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (104, 134, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (105, 135, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (106, 136, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (107, 137, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (108, 138, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (109, 139, 6, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (110, 140, 6, '필기');
+INSERT INTO Tblexampaper VALUES (101, 131, 6, '필기');
+INSERT INTO Tblexampaper VALUES (102, 132, 6, '필기');
+INSERT INTO Tblexampaper VALUES (103, 133, 6, '필기');
+INSERT INTO Tblexampaper VALUES (104, 134, 6, '필기');
+INSERT INTO Tblexampaper VALUES (105, 135, 6, '필기');
+INSERT INTO Tblexampaper VALUES (106, 136, 6, '필기');
+INSERT INTO Tblexampaper VALUES (107, 137, 6, '필기');
+INSERT INTO Tblexampaper VALUES (108, 138, 6, '필기');
+INSERT INTO Tblexampaper VALUES (109, 139, 6, '필기');
+INSERT INTO Tblexampaper VALUES (110, 140, 6, '필기');
 
 --aws 필기(141-150)
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (111, 141, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (112, 142, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (113, 143, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (114, 144, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (115, 145, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (116, 146, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (117, 147, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (118, 148, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (119, 149, 7, '필기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (120, 150, 7, '필기');
+INSERT INTO Tblexampaper VALUES (111, 141, 7, '필기');
+INSERT INTO Tblexampaper VALUES (112, 142, 7, '필기');
+INSERT INTO Tblexampaper VALUES (113, 143, 7, '필기');
+INSERT INTO Tblexampaper VALUES (114, 144, 7, '필기');
+INSERT INTO Tblexampaper VALUES (115, 145, 7, '필기');
+INSERT INTO Tblexampaper VALUES (116, 146, 7, '필기');
+INSERT INTO Tblexampaper VALUES (117, 147, 7, '필기');
+INSERT INTO Tblexampaper VALUES (118, 148, 7, '필기');
+INSERT INTO Tblexampaper VALUES (119, 149, 7, '필기');
+INSERT INTO Tblexampaper VALUES (120, 150, 7, '필기');
 
 --주석 달아둔 실기 번호 10개씩 밀림
 --JAVA 실기
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (121, 151, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (122, 152, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (123, 153, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (124, 154, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (125, 155, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (126, 156, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (127, 157, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (128, 158, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (129, 159, 8, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (130, 160, 8, '실기');
+INSERT INTO Tblexampaper VALUES (121, 151, 8, '실기');
+INSERT INTO Tblexampaper VALUES (122, 152, 8, '실기');
+INSERT INTO Tblexampaper VALUES (123, 153, 8, '실기');
+INSERT INTO Tblexampaper VALUES (124, 154, 8, '실기');
+INSERT INTO Tblexampaper VALUES (125, 155, 8, '실기');
+INSERT INTO Tblexampaper VALUES (126, 156, 8, '실기');
+INSERT INTO Tblexampaper VALUES (127, 157, 8, '실기');
+INSERT INTO Tblexampaper VALUES (128, 158, 8, '실기');
+INSERT INTO Tblexampaper VALUES (129, 159, 8, '실기');
+INSERT INTO Tblexampaper VALUES (130, 160, 8, '실기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (131, 161, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (132, 162, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (133, 163, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (134, 164, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (135, 165, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (136, 166, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (137, 167, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (138, 168, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (139, 169, 10, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (140, 170, 10, '실기');
+INSERT INTO Tblexampaper VALUES (131, 161, 10, '실기');
+INSERT INTO Tblexampaper VALUES (132, 162, 10, '실기');
+INSERT INTO Tblexampaper VALUES (133, 163, 10, '실기');
+INSERT INTO Tblexampaper VALUES (134, 164, 10, '실기');
+INSERT INTO Tblexampaper VALUES (135, 165, 10, '실기');
+INSERT INTO Tblexampaper VALUES (136, 166, 10, '실기');
+INSERT INTO Tblexampaper VALUES (137, 167, 10, '실기');
+INSERT INTO Tblexampaper VALUES (138, 168, 10, '실기');
+INSERT INTO Tblexampaper VALUES (139, 169, 10, '실기');
+INSERT INTO Tblexampaper VALUES (140, 170, 10, '실기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (141, 171, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (142, 172, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (143, 173, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (144, 174, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (145, 175, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (146, 176, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (147, 177, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (148, 178, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (149, 179, 12, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (150, 180, 12, '실기');
+INSERT INTO Tblexampaper VALUES (141, 171, 12, '실기');
+INSERT INTO Tblexampaper VALUES (142, 172, 12, '실기');
+INSERT INTO Tblexampaper VALUES (143, 173, 12, '실기');
+INSERT INTO Tblexampaper VALUES (144, 174, 12, '실기');
+INSERT INTO Tblexampaper VALUES (145, 175, 12, '실기');
+INSERT INTO Tblexampaper VALUES (146, 176, 12, '실기');
+INSERT INTO Tblexampaper VALUES (147, 177, 12, '실기');
+INSERT INTO Tblexampaper VALUES (148, 178, 12, '실기');
+INSERT INTO Tblexampaper VALUES (149, 179, 12, '실기');
+INSERT INTO Tblexampaper VALUES (150, 180, 12, '실기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (151, 151, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (152, 152, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (153, 153, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (154, 154, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (155, 155, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (156, 156, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (157, 157, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (158, 158, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (159, 159, 1, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (160, 160, 1, '실기');
-
+INSERT INTO Tblexampaper VALUES (151, 151, 1, '실기');
+INSERT INTO Tblexampaper VALUES (152, 152, 1, '실기');
+INSERT INTO Tblexampaper VALUES (153, 153, 1, '실기');
+INSERT INTO Tblexampaper VALUES (154, 154, 1, '실기');
+INSERT INTO Tblexampaper VALUES (155, 155, 1, '실기');
+INSERT INTO Tblexampaper VALUES (156, 156, 1, '실기');
+INSERT INTO Tblexampaper VALUES (157, 157, 1, '실기');
+INSERT INTO Tblexampaper VALUES (158, 158, 1, '실기');
+INSERT INTO Tblexampaper VALUES (159, 159, 1, '실기');
+INSERT INTO Tblexampaper VALUES (160, 160, 1, '실기');
 
 --오라클 실기
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (151, 151, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (152, 152, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (153, 153, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (154, 154, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (155, 155, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (156, 156, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (157, 157, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (158, 158, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (159, 159, 2, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (160, 160, 2, '실기');
+INSERT INTO Tblexampaper VALUES (161, 2, '실기');
+INSERT INTO Tblexampaper VALUES (162, 2, '실기');
+INSERT INTO Tblexampaper VALUES (163, 2, '실기');
+INSERT INTO Tblexampaper VALUES (164, 2, '실기');
+INSERT INTO Tblexampaper VALUES (165, 2, '실기');
+INSERT INTO Tblexampaper VALUES (166, 2, '실기');
+INSERT INTO Tblexampaper VALUES (167, 2, '실기');
+INSERT INTO Tblexampaper VALUES (168, 2, '실기');
+INSERT INTO Tblexampaper VALUES (169, 2, '실기');
+INSERT INTO Tblexampaper VALUES (170, 2, '실기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (161, 161, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (162, 162, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (163, 163, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (164, 164, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (165, 165, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (166, 166, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (167, 167, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (168, 168, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (169, 169, 9, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (170, 170, 9, '실기');
+INSERT INTO Tblexampaper VALUES (171, 9, '실기');
+INSERT INTO Tblexampaper VALUES (172, 9, '실기');
+INSERT INTO Tblexampaper VALUES (173, 9, '실기');
+INSERT INTO Tblexampaper VALUES (174, 9, '실기');
+INSERT INTO Tblexampaper VALUES (175, 9, '실기');
+INSERT INTO Tblexampaper VALUES (176, 9, '실기');
+INSERT INTO Tblexampaper VALUES (177, 9, '실기');
+INSERT INTO Tblexampaper VALUES (178, 9, '실기');
+INSERT INTO Tblexampaper VALUES (179, 9, '실기');
+INSERT INTO Tblexampaper VALUES (180, 9, '실기');
 
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (171, 161, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (172, 162, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (173, 163, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (174, 164, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (175, 165, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (176, 166, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (177, 167, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (178, 168, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (179, 169, 11, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (180, 170, 11, '실기');
+INSERT INTO Tblexampaper VALUES (181, 11, '실기');
+INSERT INTO Tblexampaper VALUES (182, 11, '실기');
+INSERT INTO Tblexampaper VALUES (183, 11, '실기');
+INSERT INTO Tblexampaper VALUES (184, 11, '실기');
+INSERT INTO Tblexampaper VALUES (185, 11, '실기');
+INSERT INTO Tblexampaper VALUES (186, 11, '실기');
+INSERT INTO Tblexampaper VALUES (187, 11, '실기');
+INSERT INTO Tblexampaper VALUES (188, 11, '실기');
+INSERT INTO Tblexampaper VALUES (189, 11, '실기');
+INSERT INTO Tblexampaper VALUES (190, 11, '실기');
 
+INSERT INTO Tblexampaper VALUES (191, 3, '실기');
+INSERT INTO Tblexampaper VALUES (192, 3, '실기');
+INSERT INTO Tblexampaper VALUES (193, 3, '실기');
+INSERT INTO Tblexampaper VALUES (194, 3, '실기');
+INSERT INTO Tblexampaper VALUES (195, 3, '실기');
+INSERT INTO Tblexampaper VALUES (196, 3, '실기');
+INSERT INTO Tblexampaper VALUES (197, 3, '실기');
+INSERT INTO Tblexampaper VALUES (198, 3, '실기');
+INSERT INTO Tblexampaper VALUES (199, 3, '실기');
+INSERT INTO Tblexampaper VALUES (200, 3, '실기');
 
---웹 프론트엔드 실기(161-170)
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (181, 171, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (182, 172, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (183, 173, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (184, 174, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (185, 175, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (186, 176, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (187, 177, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (188, 178, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (189, 179, 3, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (190, 180, 3, '실기');
+INSERT INTO Tblexampaper VALUES (201, 4, '실기');
+INSERT INTO Tblexampaper VALUES (202, 4, '실기');
+INSERT INTO Tblexampaper VALUES (203, 4, '실기');
+INSERT INTO Tblexampaper VALUES (204, 4, '실기');
+INSERT INTO Tblexampaper VALUES (205, 4, '실기');
+INSERT INTO Tblexampaper VALUES (206, 4, '실기');
+INSERT INTO Tblexampaper VALUES (207, 4, '실기');
+INSERT INTO Tblexampaper VALUES (208, 4, '실기');
+INSERT INTO Tblexampaper VALUES (209, 4, '실기');
+INSERT INTO Tblexampaper VALUES (210, 4, '실기');
 
+INSERT INTO Tblexampaper VALUES (211, 5, '실기');
+INSERT INTO Tblexampaper VALUES (212, 5, '실기');
+INSERT INTO Tblexampaper VALUES (213, 5, '실기');
+INSERT INTO Tblexampaper VALUES (214, 5, '실기');
+INSERT INTO Tblexampaper VALUES (215, 5, '실기');
+INSERT INTO Tblexampaper VALUES (216, 5, '실기');
+INSERT INTO Tblexampaper VALUES (217, 5, '실기');
+INSERT INTO Tblexampaper VALUES (218, 5, '실기');
+INSERT INTO Tblexampaper VALUES (219, 5, '실기');
+INSERT INTO Tblexampaper VALUES (220, 5, '실기');
 
---JSP 실기
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (191, 181, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (192, 182, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (193, 183, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (194, 184, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (195, 185, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (196, 186, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (197, 187, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (198, 188, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (199, 189, 4, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (200, 190, 4, '실기');
+INSERT INTO Tblexampaper VALUES (221, 6, '실기');
+INSERT INTO Tblexampaper VALUES (222, 6, '실기');
+INSERT INTO Tblexampaper VALUES (223, 6, '실기');
+INSERT INTO Tblexampaper VALUES (224, 6, '실기');
+INSERT INTO Tblexampaper VALUES (225, 6, '실기');
+INSERT INTO Tblexampaper VALUES (226, 6, '실기');
+INSERT INTO Tblexampaper VALUES (227, 6, '실기');
+INSERT INTO Tblexampaper VALUES (228, 6, '실기');
+INSERT INTO Tblexampaper VALUES (229, 6, '실기');
+INSERT INTO Tblexampaper VALUES (230, 6, '실기');
 
---Spring 실기(181-190)
+INSERT INTO Tblexampaper VALUES (231, 7, '실기');
+INSERT INTO Tblexampaper VALUES (232, 7, '실기');
+INSERT INTO Tblexampaper VALUES (233, 7, '실기');
+INSERT INTO Tblexampaper VALUES (234, 7, '실기');
+INSERT INTO Tblexampaper VALUES (235, 7, '실기');
+INSERT INTO Tblexampaper VALUES (236, 7, '실기');
+INSERT INTO Tblexampaper VALUES (237, 7, '실기');
+INSERT INTO Tblexampaper VALUES (238, 7, '실기');
+INSERT INTO Tblexampaper VALUES (239, 7, '실기');
+INSERT INTO Tblexampaper VALUES (240, 7, '실기');
 
---Python 실기(191-200)
-
---Django 실기(201-210)
-
---Flask 실기(211-220)
-
---Swift 실기(221-230)
-
---Kotlin 실기(231-240)
-
---React 실기(241-250)
-
---ElasticSearch 실기
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (201, 261, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (202, 262, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (203, 263, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (204, 264, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (205, 265, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (206, 266, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (207, 267, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (208, 268, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (209, 269, 5, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (210, 270, 5, '실기');
-
---데이터 구조 알고리즘(261-270)
-
---컴퓨터 이론
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (211, 281, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (212, 282, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (213, 283, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (214, 284, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (215, 285, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (216, 286, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (217, 287, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (218, 288, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (219, 289, 6, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (220, 290, 6, '실기');
-
---aws 실기
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (221, 291, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (222, 292, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (223, 293, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (224, 294, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (225, 295, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (226, 296, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (227, 297, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (228, 298, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (229, 299, 7, '실기');
-INSERT INTO Tblexampaper(seq_attendancepapers, seq_question, seq_openSubjectList, kind) VALUES (230, 300, 7, '실기');
 
 
 --교육 과정
