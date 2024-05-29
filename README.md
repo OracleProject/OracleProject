@@ -28,16 +28,18 @@ IT 국비 지원 학원에서 외주를 받아 관리자는 강사와 학생 그
 ---
 
 <h2>  📕 Skill </h2> 
-<img src="https://img.shields.io/badge/oracle-F80000?style=flat&logo=oracle&logoColor=white"/> <br/>
+
+![Oracle](https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white)
 
 ---
 
 ## 📂 Collaborative Software <br/>
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">   <br/> 
-<img src="https://img.shields.io/badge/canva-00C4CC?style=for-the-badge&logo=canva&logoColor=white">   <br/> 
-<img src="https://img.shields.io/badge/googledocs-4285F4?style=for-the-badge&logo=googledocs&logoColor=white">  <br/> 
-<img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> <br/>
-  
+<div>
+	
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
+</div>
 ## 🗄 Document <br/>
 <div><a href="https://github.com/juniel1299/OracleProject/tree/main/4%EC%A1%B0%20db%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EB%AC%B8%EC%84%9C%20%EB%AA%A8%EC%9D%8C/1.%20%EC%9A%94%EA%B5%AC%EB%B6%84%EC%84%9D%EC%84%9C">1. 요구분석</a> </div>
 
